@@ -3,16 +3,6 @@
 extern puts
 extern printf
 
-    %macro NEXT_STRING 0
-     xor eax, eax
-     mov edi, ecx
-     mov ecx, -1
-     cld
-
-     repne scasb
-     mov ecx, edi;
-    %endmacro
-
 section .data
 filename: db "./input.dat",0
 inputlen: dd 2263
@@ -22,6 +12,26 @@ section .text
 global main
 
 ; TODO: define functions and helper functions
+next_string:
+    xor eax, eax
+    mov edi, ecx
+    mov ecx, -1
+    cld
+    cmp byte[edi], 0
+    jnz pass_non_zero 
+    ;repz scasb
+    repeate:
+    scasb
+    dec ecx
+    jz repeate
+    
+    
+pass_non_zero:
+    repnz scasb
+    mov ecx, edi;
+    
+    ret
+
 xor_strings:
     push ebp
     mov ebp, esp
@@ -85,12 +95,14 @@ main:
     mov eax, 6
     int 0x80
 
+    
+
     ; all input.dat contents are now in ecx (address on stack)
 
     ; TASK 1: Simple XOR between two byte streams
     ; TODO: compute addresses on stack for str1 and str2
     mov edx, ecx; mov edx, addr_str1
-    NEXT_STRING
+    call next_string
     push edx; push addr_str1
     push ecx; push addr_str2
     ; TODO: XOR them byte by byte
@@ -106,11 +118,11 @@ main:
 
     ; TASK 2: Rolling XOR
     ; TODO: compute address on stack for str3
-    NEXT_STRING
-    push ecx;push addr_str3
+;    call next_string
+;    push ecx;push addr_str3
 
-    xor eax, eax    ; TODO: implement and apply rolling_xor function
-    call rolling_xor
+;    xor eax, eax    ; TODO: implement and apply rolling_xor function
+;    call rolling_xor
 ;    add esp, 0 ; keep addr_str3 on stack for puts
 
     ; Print the second resulting string
