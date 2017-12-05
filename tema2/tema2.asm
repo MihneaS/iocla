@@ -13,16 +13,48 @@ global main
 
 ; TODO: define functions and helper functions
 next_string:
-
-
     xor eax, eax
     mov edi, ecx
     mov ecx, -1
     cld
     repnz scasb
-    
-    mov ecx, edi;  
+    mov ecx, edi;
     ret
+
+
+
+ascii_hex_to_udec:
+
+    cmp al, '9'
+    jg aux2alpha
+    sub al, '0'
+    jmp aux2end
+aux2alpha:
+    sub al, 'a' - 10
+aux2end:
+    ret
+
+
+
+hex_enc_to_byte:
+    xor eax, eax
+    ;first char
+    lodsb
+    test al, al
+    jz aux3endofstring
+    call ascii_hex_to_udec
+    mov bl, 16
+    mul bl; assuming multiplication result fits in al
+    mov bl, al
+    ;second char
+    lodsb
+    call ascii_hex_to_udec
+    add al, bl
+    ret
+aux3endofstring:
+    ret
+
+
 
 xor_strings:
     push ebp
@@ -61,16 +93,13 @@ rolling_xor:
     mov esi, [ebp + 8]
     mov edi, esi
     inc edi; we've just assumed the string is not empty
-
     ; save first character
     mov dl, [esi]
-
     ; roll xor everthing
     push esi
     push edi
     call xor_strings
     add esp, 8
-    
     ; move string 1 byte rigjt
     cld
 t2while:
@@ -82,7 +111,45 @@ t2while:
     inc esi
     jmp t2while
 t2end:
+    popf
+    popa
+    leave
+    ret
 
+
+
+xor_hex_strings:
+    push ebp
+    mov ebp, esp
+    pusha
+    pushf
+
+    mov edi, [ebp + 8]; place to write
+    mov ecx, edi; encoded string
+    mov edx, [ebp + 12]; key
+    xor eax, eax
+t3while:
+    ;encoded byte
+    mov esi, ecx
+    call hex_enc_to_byte
+    jz t3end
+    mov ecx, esi
+    ;save it
+    push ax
+    ;key byte
+    mov esi, edx
+    call hex_enc_to_byte
+    mov edx, esi
+    ;recover encoded byte
+    pop bx
+    ;xor and write bytes
+    xor al, bl
+    stosb
+    jmp t3while
+t3end:
+    ;adding '\0'
+    xor al, al
+    stosb
     popf
     popa
     leave
@@ -151,19 +218,22 @@ main:
     call puts
     pop ecx;
 
-	
-	; TASK 3: XORing strings represented as hex strings
-	; TODO: compute addresses on stack for strings 4 and 5
-	; TODO: implement and apply xor_hex_strings
-	;push addr_str5
-	;push addr_str4
-	;call xor_hex_strings
-	;add esp, 8
 
-	; Print the third string
-	;push addr_str4
-	;call puts
-	;add esp, 4
+    ; TASK 3: XORing strings represented as hex strings
+    ; TODO: compute addresses on stack for strings 4 and 5
+    call next_string
+    mov edx, ecx; save addr_str4
+    call next_string
+    ; TODO: implement and apply xor_hex_strings
+    push ecx;push addr_str5
+    push edx;push addr_str4
+    call xor_hex_strings
+    add esp, 8
+
+    ; Print the third string
+    push edx;push addr_str4
+    call puts
+    pop ecx
 	
 	; TASK 4: decoding a base32-encoded string
 	; TODO: compute address on stack for string 6

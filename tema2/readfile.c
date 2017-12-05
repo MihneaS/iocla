@@ -3,7 +3,6 @@
 
 #define PER_LINE 20
 
-#define ONLY_HEXA
 
 int main() {
     FILE *fp;
