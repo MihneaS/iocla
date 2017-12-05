@@ -4,3 +4,6 @@ tema2: tema2.asm
 
 clean:
 	rm -f tema2 tema2.o
+
+run: tema2
+	./tema2

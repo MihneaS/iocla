@@ -3,6 +3,8 @@
 
 #define PER_LINE 20
 
+#define ONLY_HEXA
+
 int main() {
     FILE *fp;
     fp = fopen("./input.dat", "r");
@@ -11,11 +13,15 @@ int main() {
     while ((c = fgetc(fp)) != EOF) {
         count++;
         count %= PER_LINE;
+        #ifndef ONLY_HEXA
         if (isalnum(c)) {
             printf("\\%c  ", c);
         } else {
+        #endif
             printf("%2X  ", c);
+        #ifndef ONLY_HEXA
         }
+        #endif
         if (c == '\0') {
             printf("\n\n");
             count = 0;

@@ -13,28 +13,24 @@ global main
 
 ; TODO: define functions and helper functions
 next_string:
+
+
     xor eax, eax
     mov edi, ecx
     mov ecx, -1
     cld
-    cmp byte[edi], 0
-    jnz pass_non_zero 
-    ;repz scasb
-    repeate:
-    scasb
-    dec ecx
-    jz repeate
-    
-    
-pass_non_zero:
     repnz scasb
-    mov ecx, edi;
     
+    mov ecx, edi;  
     ret
 
 xor_strings:
     push ebp
     mov ebp, esp
+    pushf
+    push eax
+    push edi
+    push esi
 
     mov esi, [ebp + 8]
     mov edi, [ebp + 12]
@@ -48,31 +44,53 @@ t1while:
     jmp t1while
 
 t1end:
+    pop esi
+    pop edi
+    pop eax
+    popf
     leave
     ret
 
 
 
 rolling_xor:
-    mov ebp, esp
     push ebp
+    mov ebp, esp
+    pusha
+    pushf
+    mov esi, [ebp + 8]
+    mov edi, esi
+    inc edi; we've just assumed the string is not empty
 
-    mov edi, [ebp + 8]
-    mov esi, edi
-    inc esi; we've just assumed the string is not empty
+    ; save first character
+    mov dl, [esi]
 
-    push edi
+    ; roll xor everthing
     push esi
+    push edi
     call xor_strings
     add esp, 8
+    
+    ; move string 1 byte rigjt
+    cld
+t2while:
+    mov al, [esi]
+    test al, al
+    jz t2end
+    mov [esi], dl;
+    mov dl, al
+    inc esi
+    jmp t2while
+t2end:
 
+    popf
+    popa
     leave
     ret
 
 
 
 main:
-    mov ebp, esp; for correct debugging
     push ebp
     mov ebp, esp
     sub esp, 2300
@@ -95,8 +113,6 @@ main:
     mov eax, 6
     int 0x80
 
-    
-
     ; all input.dat contents are now in ecx (address on stack)
 
     ; TASK 1: Simple XOR between two byte streams
@@ -107,28 +123,33 @@ main:
     push ecx; push addr_str2
     ; TODO: XOR them byte by byte
     call xor_strings
-    add esp, 4; pop addr_str2, keeps addr_str1 for puts
+    add esp, 8; pop arguments
+
+;    PRINT_UDEC 4, ecx
+;    NEWLINE
+
 
     ; Print the first resulting string
-    ;push addr_str1; already done
+
+    push ecx; push addr_str2 to save it
+    push edx; push addr_str1 for puts
     call puts
-    add esp, 4
-    mov ecx, edx; restore ecx
-    
+    add esp, 4; pop ruined argument of puts
+    pop ecx; restore ecx and clear argument from stack
 
     ; TASK 2: Rolling XOR
     ; TODO: compute address on stack for str3
-;    call next_string
-;    push ecx;push addr_str3
+    call next_string
+    push ecx;push addr_str3
 
-;    xor eax, eax    ; TODO: implement and apply rolling_xor function
-;    call rolling_xor
-;    add esp, 0 ; keep addr_str3 on stack for puts
+    ; TODO: implement and apply rolling_xor function
+    call rolling_xor
+    add esp, 0 ; keep addr_str3 on stack for puts
 
     ; Print the second resulting string
     ;push addr_str3; already pushed
-;    call puts
-;    add esp, 4
+    call puts
+    pop ecx;
 
 	
 	; TASK 3: XORing strings represented as hex strings
