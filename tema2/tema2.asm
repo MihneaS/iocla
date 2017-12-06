@@ -8,6 +8,8 @@ filename: db "./input.dat",0
 inputlen: dd 2263
 fmtstr: db "Key: %d",0xa,0
 
+NULL32 equ -1
+
 section .text
 global main
 
@@ -52,6 +54,34 @@ hex_enc_to_byte:
     add al, bl
     ret
 aux3endofstring:
+    ret
+
+
+
+nextdecoded32char:
+    lodsb
+    cmp al, '='
+    ja aux4alpha
+    jb aux4numnull
+    xor al, al
+    jmp aux4end
+
+aux4numnull:
+    cmp al, '2'
+    jl aux4null
+    sub al, '2'
+    add al, 26
+    jmp aux4end
+
+aux4null:
+    mov al, NULL32
+    jmp aux4end
+
+aux4alpha:
+    sub al, 'A'
+    jmp aux4end
+
+aux4end:
     ret
 
 
@@ -156,6 +186,105 @@ t3end:
     ret
 
 
+base32decode:
+    push ebp
+    mov ebp, esp
+    pusha
+    pushf
+
+    mov edi, [ebp + 8]
+    mov esi, edi
+    xor edx, edx
+
+t4while:
+                                            ;edi[0]
+                                                ;esi[0]
+    call nextdecoded32char; al = esi[0]
+    mov [edi], dl; edi[0] = 0;must be called after al=esi[0]
+    shl al, 3
+    add [edi], al; edi[0] += esi[0] << 3
+                                                ;esi[1]
+    call nextdecoded32char; al = esi[1]
+    mov bl, al;
+    shr al, 2
+    add [edi], al; edi[0] += esi[1] >> 2
+                                            ;edi[1]
+    mov [edi + 1], dl; edi[1] = 0
+                                                ;esi[1]
+    mov al, bl;
+    shl al, 6;
+    add [edi + 1], al
+                                                ;esi[2]
+    call nextdecoded32char; al = esi[2]
+    shl al, 1;
+    add [edi + 1], al
+                                                ;esi[3]
+    call nextdecoded32char; al = esi[3]
+    mov bl, al
+    shr al, 4
+    add [edi + 1], al
+                                            ;edi[2]
+    mov [edi + 2], dl; edi[2] = 0
+                                                ;esi[3]
+    mov al, bl
+    shl al, 4
+    add [edi + 2], al
+                                                ;esi[4]
+    call nextdecoded32char; al = esi[4]
+    mov bl, al
+    shr al, 1
+    add [edi + 2], al
+                                            ;edi[3]
+    mov [edi + 3], dl
+                                                ;esi[4]
+    mov al, bl
+    shl al, 7
+    add [edi + 3], al
+                                                ;esi[5]
+    call nextdecoded32char; al = esi[5]
+    shl al, 2
+    add [edi + 3], al
+                                                ;esi[6]
+    call nextdecoded32char; al = esi[6]
+    mov bl, al
+    shr al, 3
+    add [edi + 3], al
+                                            ;edi[4]
+    mov [edi + 4], dl
+                                                ;esi[6]
+    mov al, bl
+    shl al, 5
+    add [edi + 4], al
+                                                ;esi[7]
+    call nextdecoded32char; al = esi[7]
+    add [edi + 4], al
+
+    ; increment edi 5 times
+    add edi, 5
+    cmp al, NULL32
+    jnz t4while
+t4end:
+    pushf
+    pusha
+    leave
+    ret
+
+
+
+bruteforce_singlebyte_xor:
+    push ebp
+    mov ebp, esp
+    pusha
+    pushf
+
+    ;TODO
+
+    pushf
+    pusha
+    leave
+    ret
+
+
 
 main:
     push ebp
@@ -192,10 +321,6 @@ main:
     call xor_strings
     add esp, 8; pop arguments
 
-;    PRINT_UDEC 4, ecx
-;    NEWLINE
-
-
     ; Print the first resulting string
 
     push ecx; push addr_str2 to save it
@@ -218,14 +343,16 @@ main:
     call puts
     pop ecx;
 
-
     ; TASK 3: XORing strings represented as hex strings
     ; TODO: compute addresses on stack for strings 4 and 5
     call next_string
     mov edx, ecx; save addr_str4
     call next_string
+    mov ebx, ecx;
+    call next_string; compute next string now because xor_hex_strings affects the stack
+    push ecx; protect ecx from evil puts
     ; TODO: implement and apply xor_hex_strings
-    push ecx;push addr_str5
+    push ebx;push addr_str5
     push edx;push addr_str4
     call xor_hex_strings
     add esp, 8
@@ -233,19 +360,20 @@ main:
     ; Print the third string
     push edx;push addr_str4
     call puts
-    pop ecx
-	
-	; TASK 4: decoding a base32-encoded string
-	; TODO: compute address on stack for string 6
-	; TODO: implement and apply base32decode
-	;push addr_str6
-	;call base32decode
-	;add esp, 4
+    add esp, 4;
 
-	; Print the fourth string
-	;push addr_str6
-	;call puts
-	;add esp, 4
+    ; TASK 4: decoding a base32-encoded string
+    ; TODO: compute address on stack for string 6
+    ;call next_string; already done
+    ; TODO: implement and apply base32decode
+    ;push ecx;push addr_str6 already pushed <3
+    call base32decode
+    add esp, 0; keep addr_str6 on stack for puts
+
+    ; Print the fourth string
+    ;push addr_str6; done
+    call puts
+    add esp, 4
 
 	; TASK 5: Find the single-byte key used in a XOR encoding
 	; TODO: determine address on stack for string 7
