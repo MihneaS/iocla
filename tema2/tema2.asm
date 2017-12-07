@@ -3,60 +3,34 @@
 extern puts
 extern printf
 
+extern xor_strings
+extern rolling_xor
+extern xor_hex_strings
+extern base32decode
+extern bruteforce_singlebyte_xor
+extern break_substitution
+
 section .data
 filename: db "./input.dat",0
 inputlen: dd 2263
 fmtstr: db "Key: %d",0xa,0
+;substitution_table: db " ce tkaqogsliin.rsdehymhlfcwwnum.xfupdyzgtvjbrkpjoxbzvqa", 0xa, 0
+substitution_table: db "aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz  ..", 0xa, 0
 
-NULL32 equ -1
+addr_str8: dd 0
+
+MAXKEY equ 255
+TASK5ERR equ 256
 
 section .text
 global main
 
-; TODO: define functions and helper functions
-next_string:
-    xor eax, eax
-    mov edi, ecx
-    mov ecx, -1
-    cld
-    repnz scasb
-    mov ecx, edi;
-    ret
 
 
-
-ascii_hex_to_udec:
-
-    cmp al, '9'
-    jg aux2alpha
-    sub al, '0'
-    jmp aux2end
-aux2alpha:
-    sub al, 'a' - 10
-aux2end:
-    ret
-
-
-
-hex_enc_to_byte:
-    xor eax, eax
-    ;first char
-    lodsb
-    test al, al
-    jz aux3endofstring
-    call ascii_hex_to_udec
-    mov bl, 16
-    mul bl; assuming multiplication result fits in al
-    mov bl, al
-    ;second char
-    lodsb
-    call ascii_hex_to_udec
-    add al, bl
-    ret
-aux3endofstring:
-    ret
-
-
+%macro END_IF_NULL 0.nolist
+    test edx, edx
+    jnz t4end
+%endmacro
 
 nextdecoded32char:
     lodsb
@@ -67,14 +41,15 @@ nextdecoded32char:
     jmp aux4end
 
 aux4numnull:
-    cmp al, '2'
-    jl aux4null
+    test al, al
+    jz aux4null
     sub al, '2'
     add al, 26
     jmp aux4end
 
 aux4null:
-    mov al, NULL32
+    xor al, al
+    inc dl
     jmp aux4end
 
 aux4alpha:
@@ -86,115 +61,20 @@ aux4end:
 
 
 
-xor_strings:
+base32decode2:
     push ebp
     mov ebp, esp
-    pushf
-    push eax
-    push edi
-    push esi
-
-    mov esi, [ebp + 8]
-    mov edi, [ebp + 12]
-
-t1while:
-    lodsb
-    test al ,al
-    jz t1end
-    xor [edi], al
-    inc edi
-    jmp t1while
-
-t1end:
-    pop esi
-    pop edi
-    pop eax
-    popf
-    leave
-    ret
-
-
-
-rolling_xor:
-    push ebp
-    mov ebp, esp
-    pusha
-    pushf
-    mov esi, [ebp + 8]
-    mov edi, esi
-    inc edi; we've just assumed the string is not empty
-    ; save first character
-    mov dl, [esi]
-    ; roll xor everthing
-    push esi
-    push edi
-    call xor_strings
-    add esp, 8
-    ; move string 1 byte rigjt
-    cld
-t2while:
-    mov al, [esi]
-    test al, al
-    jz t2end
-    mov [esi], dl;
-    mov dl, al
-    inc esi
-    jmp t2while
-t2end:
-    popf
-    popa
-    leave
-    ret
-
-
-
-xor_hex_strings:
-    push ebp
-    mov ebp, esp
-    pusha
-    pushf
-
-    mov edi, [ebp + 8]; place to write
-    mov ecx, edi; encoded string
-    mov edx, [ebp + 12]; key
-    xor eax, eax
-t3while:
-    ;encoded byte
-    mov esi, ecx
-    call hex_enc_to_byte
-    jz t3end
-    mov ecx, esi
-    ;save it
-    push ax
-    ;key byte
-    mov esi, edx
-    call hex_enc_to_byte
-    mov edx, esi
-    ;recover encoded byte
-    pop bx
-    ;xor and write bytes
-    xor al, bl
-    stosb
-    jmp t3while
-t3end:
-    ;adding '\0'
-    xor al, al
-    stosb
-    popf
-    popa
-    leave
-    ret
-
-
-base32decode:
-    push ebp
-    mov ebp, esp
-    pusha
-    pushf
+    pushad
+    pushfd
 
     mov edi, [ebp + 8]
     mov esi, edi
     xor edx, edx
+
+    mov ecx, [ebp + 12]
+    PRINT_HEX 4, [ecx +4*8]
+    NEWLINE
+
 
 t4while:
                                             ;edi[0]
@@ -261,32 +141,80 @@ t4while:
 
     ; increment edi 5 times
     add edi, 5
-    cmp al, NULL32
-    jnz t4while
+    END_IF_NULL
+    
+;    PRINT_HEX 4,[ecx +4*8]
+;    NEWLINE
+    
+    
+    jmp t4while
 t4end:
-    pushf
-    pusha
+    pushfd
+    
+    PRINT_HEX 4,[ecx +4*8]
+    NEWLINE
+    
+    pushad
+    
+    mov eax, [ebp + 12]
+        PRINT_HEX 4, [eax + 8*4]
+    NEWLINE
+    
+    
     leave
     ret
 
 
 
-bruteforce_singlebyte_xor:
+
+; TODO: define functions and helper functions
+next_string:
+    xor eax, eax
+    mov edi, ecx
+    mov ecx, -1
+    cld
+    repnz scasb
+    mov ecx, edi;
+    ret
+
+break_substitution2:
     push ebp
     mov ebp, esp
     pusha
     pushf
 
-    ;TODO
+    mov esi, [ebp + 8]; str_addr
+;    PRINT_HEX 4, esi
+;    NEWLINE
+    mov edi, [ebp + 12]; substitution_table    
 
+xor ecx,ecx
+while1:
+    lodsb
+    test al, al
+    jz end1
+      
+    mov edi, [ebp + 12]
+while2:
+    cmp eax, [edi]
+    ;je end2
+    ;add edi, 2
+    ;inc edi
+    ;jmp while2
+end2:
+    mov bl, [edi + 1]
+    mov [esi - 1], bl
+    
+inc ecx    
+    jmp while1
+end1:
     pushf
     pusha
     leave
     ret
 
-
-
 main:
+    mov ebp, esp; for correct debugging
     push ebp
     mov ebp, esp
     sub esp, 2300
@@ -310,106 +238,151 @@ main:
     int 0x80
 
     ; all input.dat contents are now in ecx (address on stack)
+    
+    ;compute all string addresses and store them
+    ;reserve space for addresses
+    sub esp, 9*4 +200
+    
+    ;compute
+    mov [esp + 1*4], ecx; addr_str1;
+    call next_string
+    mov [esp + 2*4], ecx; addr_str2;
+    call next_string
+    mov [esp + 3*4], ecx; addr_str3;
+    call next_string
+    mov [esp + 4*4], ecx; addr_str4;
+    call next_string
+    mov [esp + 5*4], ecx; addr_str5;
+    call next_string
+    mov [esp + 6*4], ecx; addr_str6;
+    call next_string
+    mov [esp + 7*4], ecx; addr_str7;
+    call next_string
+    mov [esp + 8*4], ecx; addr_str8;
+    mov [addr_str8], ecx;
+;    PRINT_HEX 4, [addr_str8]
+;    NEWLINE
+;    PRINT_HEX 4, [esp + 8*4]
+;    NEWLINE
+    push esp
+    
 
     ; TASK 1: Simple XOR between two byte streams
-    ; TODO: compute addresses on stack for str1 and str2
-    mov edx, ecx; mov edx, addr_str1
-    call next_string
-    push edx; push addr_str1
-    push ecx; push addr_str2
-    ; TODO: XOR them byte by byte
+    pop eax;
+    push eax;
+    push DWORD[eax + 1*4]; push addr_str1
+    push DWORD[eax + 2*4]; push addr_str2
     call xor_strings
     add esp, 8; pop arguments
 
     ; Print the first resulting string
 
-    push ecx; push addr_str2 to save it
-    push edx; push addr_str1 for puts
+    pop eax
+    push eax
+    push DWORD[eax + 4*1]
     call puts
     add esp, 4; pop ruined argument of puts
-    pop ecx; restore ecx and clear argument from stack
-
+    
     ; TASK 2: Rolling XOR
-    ; TODO: compute address on stack for str3
-    call next_string
-    push ecx;push addr_str3
-
-    ; TODO: implement and apply rolling_xor function
+    pop eax;
+    push eax;
+    push DWORD[eax + 3*4];push addr_str3
     call rolling_xor
-    add esp, 0 ; keep addr_str3 on stack for puts
+    add esp, 4
 
     ; Print the second resulting string
     ;push addr_str3; already pushed
+    pop eax;
+    push eax;
+    push DWORD[eax + 3*4];push addr_str3
     call puts
     pop ecx;
 
     ; TASK 3: XORing strings represented as hex strings
-    ; TODO: compute addresses on stack for strings 4 and 5
-    call next_string
-    mov edx, ecx; save addr_str4
-    call next_string
-    mov ebx, ecx;
-    call next_string; compute next string now because xor_hex_strings affects the stack
-    push ecx; protect ecx from evil puts
-    ; TODO: implement and apply xor_hex_strings
-    push ebx;push addr_str5
-    push edx;push addr_str4
+
+    pop eax
+    push eax
+    push DWORD[eax + 4*5];push addr_str5
+    push DWORD[eax + 4*4];push addr_str4
     call xor_hex_strings
     add esp, 8
 
     ; Print the third string
-    push edx;push addr_str4
+    pop eax
+    push eax
+    push DWORD[eax + 4*4];push addr_str4
     call puts
     add esp, 4;
-
+    
     ; TASK 4: decoding a base32-encoded string
-    ; TODO: compute address on stack for string 6
-    ;call next_string; already done
-    ; TODO: implement and apply base32decode
-    ;push ecx;push addr_str6 already pushed <3
-    call base32decode
-    add esp, 0; keep addr_str6 on stack for puts
+
+    pop eax
+;PRINT_HEX 4, [eax + 8*4]
+;NEWLINE
+
+    push eax
+    push DWORD[eax + 6*4]; addr_str6
+    call base32decode2
+    
+;pop eax
+;push eax
+;PRINT_HEX 4, [eax + 8*4]
+;NEWLINE
+
+;    PRINT_HEX 4, [addr_str8]
+;    NEWLINE
+    
+    add esp, 4
 
     ; Print the fourth string
-    ;push addr_str6; done
+    pop eax
+    push eax
+    push DWORD[eax + 6*4]; addr_str6
     call puts
     add esp, 4
 
-	; TASK 5: Find the single-byte key used in a XOR encoding
-	; TODO: determine address on stack for string 7
-	; TODO: implement and apply bruteforce_singlebyte_xor
-	;push key_addr
-	;push addr_str7
-	;call bruteforce_singlebyte_xor
-	;add esp, 8
+    ; TASK 5: Find the single-byte key used in a XOR encoding
+    pop eax
+    push eax
+    push eax;push key_addr
+    push DWORD[eax + 7*4];push addr_str7
+    call bruteforce_singlebyte_xor
+    add esp, 0; keep em on stack
 
-	; Print the fifth string and the found key value
-	;push addr_str7
-	;call puts
-	;add esp, 4
+    ; Print the fifth string and the found key value
+    ;done push ecx;push addr_str7
+    call puts
+    add esp, 4; pop addr_str7, keep key_addr on stack
 
-	;push keyvalue
-	;push fmtstr
-	;call printf
-	;add esp, 8
+    pop ebx
+    push DWORD[ebx];push keyvalue
+    push fmtstr
+    call printf
+    add esp, 8
 
-	; TASK 6: Break substitution cipher
-	; TODO: determine address on stack for string 8
-	; TODO: implement break_substitution
-	;push substitution_table_addr
-	;push addr_str8
-	;call break_substitution
-	;add esp, 8
+    ; TASK 6: Break substitution cipher
+    pop eax
+    push eax
+    mov eax, substitution_table
+    push eax
+;    PRINT_HEX 4, [eax + 8*4]
+;    NEWLINE
+;    push DWORD[eax + 8*4];push addr_str8
+    push DWORD[addr_str8]
+    call break_substitution2
+    add esp, 8
 
-	; Print final solution (after some trial and error)
-	;push addr_str8
-	;call puts
-	;add esp, 4
+    ; Print final solution (after some trial and error)
+    pop eax
+    push eax
+    push DWORD[eax + 8*4];push addr_str8
+    call puts
+    add esp, 4
 
-	; Print substitution table
-	;push substitution_table_addr
-	;call puts
-	;add esp, 4
+    ; Print substitution table
+    push substitution_table
+    call puts
+    add esp, 4
 
     ; Phew, finally done
     xor eax, eax

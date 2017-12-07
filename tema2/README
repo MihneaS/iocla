@@ -1,0 +1,17 @@
+
+
+
+TASK6:
+
+am folosit programul readfile.c pentru a afisa continutul fisierului binar
+am copiat de mana stringul taskului 6 in codtask6.txt (fara caracterul terminal)
+am folosit
+wc -c codtask6.tx
+pentru a afla numarul de caractere
+am folosit
+tr -d ' \n' < codtask6.txt > codfinal.txt
+pentru a elimina caracterele in plus
+
+am folosit compfreq.c pentru a calcula frecventa in l
+le-am ordonat pe hartie
+folosind decode.c am incercat mai multe tabele schimband cate o litera (mai intai spatiu, apoi acolo unde aproape se potriveau numerele) pana am gasit tabela corecta

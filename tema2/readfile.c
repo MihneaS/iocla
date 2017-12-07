@@ -13,8 +13,10 @@ int main() {
         count++;
         count %= PER_LINE;
         #ifndef ONLY_HEXA
-        if (isalnum(c)) {
-            printf("\\%c  ", c);
+        if (isalnum(c) || c == '.' || c == '=') {
+            printf(" %c  ", c);
+        } else if (c == ' ') {
+            printf(" _  ");
         } else {
         #endif
             printf("%2X  ", c);
