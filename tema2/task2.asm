@@ -21,15 +21,15 @@ rolling_xor:
     add esp, 8
     ; move string 1 byte rigjt
     cld
-t2while:
+while:
     mov al, [esi]
     test al, al
-    jz t2end
+    jz end
     mov [esi], dl;
     mov dl, al
     inc esi
-    jmp t2while
-t2end:
+    jmp while
+end:
     popf
     popa
     leave

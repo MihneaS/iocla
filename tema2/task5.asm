@@ -1,12 +1,12 @@
 global bruteforce_singlebyte_xor
 
-%macro T5_VERIFY_LETTER 2.nolist
+%macro VERIFY_LETTER 2.nolist
     mov bl, %1
     test bl, bl
-    jz t5notfound
+    jz notfound
     xor bl, cl
     cmp bl, %2
-    jne t5notfound
+    jne notfound
 %endmacro
 
 section .data
@@ -25,42 +25,42 @@ bruteforce_singlebyte_xor:
     mov esi, [ebp + 8];  string_addr
     mov edi, [ebp + 12]; key_addr
 
-t5while1:
+while1:
     lodsb
     test al, al
-    jz t5err
+    jz err
     xor ecx, ecx
-t5while2:
-    T5_VERIFY_LETTER al, 'f'
-    T5_VERIFY_LETTER [esi], 'o'
-    T5_VERIFY_LETTER [esi + 1], 'r'
-    T5_VERIFY_LETTER [esi + 2], 'c'
-    T5_VERIFY_LETTER [esi + 3], 'e'
+while2:
+    VERIFY_LETTER al, 'f'
+    VERIFY_LETTER [esi], 'o'
+    VERIFY_LETTER [esi + 1], 'r'
+    VERIFY_LETTER [esi + 2], 'c'
+    VERIFY_LETTER [esi + 3], 'e'
     ;found
-    jmp t5end1
-t5notfound:
+    jmp end1
+notfound:
     inc cl;
     test cl, cl
-    jnz t5while2
-;t5end2:
-    jmp t5while1
-t5end1:
+    jnz while2
+;end of secound while2:
+    jmp while1
+end1:
 
     mov [edi], ecx; assumed it all went well
     mov edi, [ebp + 8]
-t5while3:
+while3:
     mov al, [edi]
     test al, al
-    jz t5end3
+    jz end3
     xor [edi], cl
     inc edi
-    jmp t5while3
-t5end3:
+    jmp while3
+end3:
     pushf
     pusha
     leave
     ret
 
-t5err:
+err:
     mov DWORD[edi], TASK5ERR;
-    jmp t5end3
+    jmp end3

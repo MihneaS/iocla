@@ -3,7 +3,6 @@ global xor_hex_strings
 section .text
 
 ascii_hex_to_udec:
-
     cmp al, '9'
     jg aux2alpha
     sub al, '0'
@@ -44,11 +43,11 @@ xor_hex_strings:
     mov ecx, edi; encoded string
     mov edx, [ebp + 12]; key
     xor eax, eax
-t3while:
+while:
     ;encoded byte
     mov esi, ecx
     call hex_enc_to_byte
-    jz t3end
+    jz end
     mov ecx, esi
     ;save it
     push ax
@@ -61,8 +60,8 @@ t3while:
     ;xor and write bytes
     xor al, bl
     stosb
-    jmp t3while
-t3end:
+    jmp while
+end:
     ;adding '\0'
     xor al, al
     stosb

@@ -38,8 +38,8 @@ aux4end:
 base32decode:
     push ebp
     mov ebp, esp
-    pushad
-    pushfd
+    pusha
+    pushf
 
     mov edi, [ebp + 8]
     mov esi, edi
@@ -113,7 +113,7 @@ t4while:
     END_IF_NULL
     jmp t4while
 t4end:
-    pushfd
-    pushad
+    pushf
+    pusha
     leave
     ret

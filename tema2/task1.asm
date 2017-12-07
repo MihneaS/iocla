@@ -13,15 +13,15 @@ xor_strings:
     mov esi, [ebp + 8]
     mov edi, [ebp + 12]
 
-t1while:
+while:
     lodsb
     test al ,al
-    jz t1end
+    jz end
     xor [edi], al
     inc edi
-    jmp t1while
+    jmp while
 
-t1end:
+end:
     pop esi
     pop edi
     pop eax

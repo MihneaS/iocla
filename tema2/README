@@ -1,5 +1,28 @@
 
+obs:
+pentru convenienta calculez toate adresele de inceput ale stringurilor la inceput si le stochez pe stiva
+deoarece macro-urile nu erau compatibile cu debuggerul, multe functii ce ar trebui sa fie macro-uri (in cazul meu toate functiile ajutatoare ar trebui sa fie macr-ouri) sunt functii 
+deoarece tema2.asm devenise imens, am separat tema in mai multe fisiere in functie de task-uri
 
+TASK1:
+    xorez in-place pana cand se termina sirul din care citesc
+
+Task2:
+    pentru convenienta folosesc functia de la task1 pentru a xora toti octetii ce trebuie xorati. pentu a nu pierde octei, il salvez pe primul si apoi fiecare octet xorat il salvez cu o casuta mai la stanga decat ar fi loc lui (ca sa ramana informatia necesara pentru al doilea octet), apoi mut toti octetii mai la dreapta o data, apoi restitui octetul initial
+
+Task3:
+    functii ajutatoare:
+        ascii_hex_to_udec: transforma caracterul citit in valoarea corespunzatoare ('A' in 10, '3' in 3 etc)
+        hex_enc_to_byte: decodeaza 2 octeti codificati in hexa si obtine un octet normal
+    folosec hex_enc_to_byte pe 2 octeti dintr-un sir, pe 2 din celalalt, apoi ii xorez si ii memorez in locul primului sir. la final adaug '\0' pentru a afisa corect
+
+task4:
+    functii ajutatoare:
+        nextdecoded32char: citeste un caracter si il transforma in valoare corecta din tabel ('A' in 0, '3' in 26, '/0' si '=' in zero etc. daca intalneste '/0' seteaza dl pe 1)
+    decodez fiecare caracter si il pun manual la locul lui in cei 5 octeti finali (din nou memorare in place)
+
+task5:
+    pt fiecare octet din sir verific daca xorat cu oricare alt octet da f si daca urmatorul octet xorat cu cheia gasita da o etc. xorex tot sirul si retin cheia
 
 TASK6:
 
@@ -15,3 +38,5 @@ pentru a elimina caracterele in plus
 am folosit compfreq.c pentru a calcula frecventa in l
 le-am ordonat pe hartie
 folosind decode.c am incercat mai multe tabele schimband cate o litera (mai intai spatiu, apoi acolo unde aproape se potriveau numerele) pana am gasit tabela corecta
+
+inlocuiesc in place fiecare caracter din sir cu caracterul corespunzator din tabela
