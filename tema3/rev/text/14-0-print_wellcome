@@ -1,0 +1,27 @@
+   
+
+ 8048871:	55                   	push   ebp
+ 8048872:	89 e5                	mov    ebp,esp
+ 8048874:	68 c0 a2 04 08       	push   0x804a2c0
+ 8048879:	e8 12 fc ff ff       	call   8048490 <puts@plt>
+ 804887e:	83 c4 04             	add    esp,0x4
+ 8048881:	c9                   	leave  
+ 8048882:	c3                   	ret
+
+low-level:
+
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+pusheaza pe stiva un string global (o sa il numesc wellcome_str)
+il afiseaza cu puts
+sterge de pe stiva wellcome-str
+restituie stiva
+intoarce
+
+high-level
+
+afiseaza un anumit mesajul de intampinare
+
+cumas numi-o
+
+void print_wellcome()

@@ -1,0 +1,36 @@
+ 8048710:	55                   	push   ebp
+ 8048711:	89 e5                	mov    ebp,esp
+ 8048713:	83 ec 10             	sub    esp,0x10
+ 8048716:	68 76 8d 04 08       	push   0x8048d76
+ 804871b:	e8 60 fd ff ff       	call   8048480 <printf@plt>
+ 8048720:	83 c4 04             	add    esp,0x4
+ 8048723:	8d 45 f0             	lea    eax,[ebp-0x10]
+ 8048726:	50                   	push   eax
+ 8048727:	68 71 8d 04 08       	push   0x8048d71
+ 804872c:	e8 af fd ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 8048731:	83 c4 08             	add    esp,0x8
+ 8048734:	c9                   	leave  
+ 8048735:	c3                   	ret    
+
+low-level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se rezerva 16 de octeti pe stiva (sa numim aceasta variabila char name[20])
+se pusheaza "Enter desired address: "
+se cheama printf("Enter desired username: ")
+se elibereaza stiva
+se pune name in eax
+se pusheaza name
+se pusheaza "%20s"
+se cheama scanf("%20s", name)
+se elibereaza stiva de parametrii
+restituie stiva, return
+
+high level
+aceasta functie NU SCHIMBA ADRESA-ul, doar o citeste de la tastatura
+
+VULNERABILITATE: deoarece se citesc maxim 20 de caractere intr-un spatiu de 16
+se poate suprascrie adresa de return
+
+cum as numi-o
+char* change_address()

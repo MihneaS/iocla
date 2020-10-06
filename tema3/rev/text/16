@@ -1,0 +1,16 @@
+ 
+
+ 80488ba:	55                   	push   ebp
+ 80488bb:	89 e5                	mov    ebp,esp
+ 80488bd:	81 7d 08 de c0 ad de 	cmp    DWORD PTR [ebp+0x8],0xdeadc0de
+ 80488c4:	75 22                	jne    80488e8 <__isoc99_scanf@plt+0x408>
+ 80488c6:	c7 05 98 a2 04 08 00 	mov    DWORD PTR ds:0x804a298,0x0
+ 80488cd:	00 00 00 
+ 80488d0:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 80488d5:	8d 48 08             	lea    ecx,[eax+0x8]
+ 80488d8:	a1 ac a2 04 08       	mov    eax,ds:0x804a2ac
+ 80488dd:	8b 15 b0 a2 04 08    	mov    edx,DWORD PTR ds:0x804a2b0
+ 80488e3:	89 01                	mov    DWORD PTR [ecx],eax
+ 80488e5:	89 51 04             	mov    DWORD PTR [ecx+0x4],edx
+ 80488e8:	5d                   	pop    ebp
+ 80488e9:	c3                   	ret  

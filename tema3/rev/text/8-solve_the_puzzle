@@ -1,0 +1,76 @@
+ 8048679:	55                   	push   ebp
+ 804867a:	89 e5                	mov    ebp,esp
+ 804867c:	83 ec 20             	sub    esp,0x20
+ 804867f:	b9 00 00 00 00       	mov    ecx,0x0
+ 8048684:	b8 20 00 00 00       	mov    eax,0x20
+ 8048689:	83 e0 fc             	and    eax,0xfffffffc
+ 804868c:	89 c2                	mov    edx,eax
+ 804868e:	b8 00 00 00 00       	mov    eax,0x0
+ 8048693:	89 4c 05 e0          	mov    DWORD PTR [ebp+eax*1-0x20],ecx
+ 8048697:	83 c0 04             	add    eax,0x4
+ 804869a:	39 d0                	cmp    eax,edx
+ 804869c:	72 f5                	jb     8048693 <__isoc99_scanf@plt+0x1b3>
+ 804869e:	68 20 8d 04 08       	push   0x8048d20
+ 80486a3:	e8 e8 fd ff ff       	call   8048490 <puts@plt>
+ 80486a8:	83 c4 04             	add    esp,0x4
+ 80486ab:	8d 45 e0             	lea    eax,[ebp-0x20]
+ 80486ae:	50                   	push   eax
+ 80486af:	68 39 8d 04 08       	push   0x8048d39
+ 80486b4:	e8 27 fe ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 80486b9:	83 c4 08             	add    esp,0x8
+ 80486bc:	8d 45 e0             	lea    eax,[ebp-0x20]
+ 80486bf:	50                   	push   eax
+ 80486c0:	e8 98 03 00 00       	call   8048a5d <__isoc99_scanf@plt+0x57d>
+ 80486c5:	83 c4 04             	add    esp,0x4
+ 80486c8:	85 c0                	test   eax,eax
+ 80486ca:	74 0f                	je     80486db <__isoc99_scanf@plt+0x1fb>
+ 80486cc:	68 3e 8d 04 08       	push   0x8048d3e
+ 80486d1:	e8 ba fd ff ff       	call   8048490 <puts@plt>
+ 80486d6:	83 c4 04             	add    esp,0x4
+ 80486d9:	eb 0d                	jmp    80486e8 <__isoc99_scanf@plt+0x208>
+ 80486db:	68 47 8d 04 08       	push   0x8048d47
+ 80486e0:	e8 ab fd ff ff       	call   8048490 <puts@plt>
+ 80486e5:	83 c4 04             	add    esp,0x4
+ 80486e8:	c9                   	leave  
+ 80486e9:	c3                   	ret    
+
+
+
+
+low-level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+rezerva 20 de octeti pe stiva
+initializeaza ecx cu 0
+initializeaza eax cu 32
+anduieste eax cu 0xfffffffc, ramanre tot 32
+muta in edx eax
+eax devine 0
+initializeaza cu 0 spatiul alocat pe stiva
+afiseaza "Enter the valid serial:"
+pune in eax adresa s5
+puheaza eax
+puseaza stringul "%32s"
+apeleaza scanf ; SE CITESC MAXIM 32 DE CARACTERE intr-o adresa de maxim 20 de caractere => POSIBILITATE DE BUFFER OVERFLOW
+se elimina argumentele lui scanf de pe stiva
+se pusheaza stringul citit pe stiva
+se cheama o functie verificatoare // da-i nume
+verifica daca eax e 0
+daca e 0 afiseaza "Nope, try again.")
+altfel afiseaza "Correct!"
+restituie stiva
+return
+
+high-level
+e o functie fara parametrii
+citeste de la tastatura "serial" si il verifica
+exista vulnerabilitatea de buffer overflow
+
+cum as numi functia
+void solve_the_puzzle() {
+	char serial[20] = {0};
+	...
+}
+
+
+

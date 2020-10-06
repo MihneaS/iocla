@@ -1,0 +1,17 @@
+ 8048581:	55                   	push   ebp
+ 8048582:	89 e5                	mov    ebp,esp
+ 8048584:	83 ec 10             	sub    esp,0x10
+ 8048587:	50                   	push   eax
+ 8048588:	68 fc a3 04 08       	push   0x804a3fc
+ 804858d:	ff d2                	call   edx
+ 804858f:	83 c4 10             	add    esp,0x10
+ 8048592:	c9                   	leave 
+ 8048593:	f3 c3                	repz ret 
+ 
+
+
+
+8048595:	8d 74 26 00          	lea    esi,[esi+eiz*1+0x0]
+ 8048599:	8d bc 27 00 00 00 00 	lea    edi,[edi+eiz*1+0x0]
+ 80485a0:	80 3d 24 a4 04 08 00 	cmp    BYTE PTR ds:0x804a424,0x0
+ 80485a7:	75 13                	jne    80485bc <__isoc99_scanf@plt+0xdc>

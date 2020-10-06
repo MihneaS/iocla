@@ -1,0 +1,7 @@
+ 8048d04:	53                   	push   ebx
+ 8048d05:	83 ec 08             	sub    esp,0x8
+ 8048d08:	e8 13 f8 ff ff       	call   8048520 <__isoc99_scanf@plt+0x40>
+ 8048d0d:	81 c3 db 14 00 00    	add    ebx,0x14db
+ 8048d13:	83 c4 08             	add    esp,0x8
+ 8048d16:	5b                   	pop    ebx
+ 8048d17:	c3   					ret

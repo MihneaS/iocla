@@ -1,0 +1,12 @@
+08048404 <.init>:
+ 8048404:       53                      push   ebx
+ 8048405:       83 ec 08                sub    esp,0x8
+ 8048408:       e8 13 01 00 00          call   8048520 <__isoc99_scanf@plt+0x40>
+ 804840d:       81 c3 db 1d 00 00       add    ebx,0x1ddb
+ 8048413:       8b 83 fc ff ff ff       mov    eax,DWORD PTR [ebx-0x4]
+ 8048419:       85 c0                   test   eax,eax
+ 804841b:       74 05                   je     8048422 <setbuf@plt-0x1e>
+ 804841d:       e8 7e 00 00 00          call   80484a0 <__gmon_start__@plt>
+ 8048422:       83 c4 08                add    esp,0x8
+ 8048425:       5b                      pop    ebx
+ 8048426:       c3   

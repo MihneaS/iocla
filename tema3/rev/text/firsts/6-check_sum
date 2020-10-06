@@ -1,0 +1,56 @@
+ 80485eb:	55                   	push   ebp
+ 80485ec:	89 e5                	mov    ebp,esp
+ 80485ee:	83 ec 08             	sub    esp,0x8
+ 80485f1:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 80485f8:	c7 45 f8 00 00 00 00 	mov    DWORD PTR [ebp-0x8],0x0
+ 80485ff:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 8048606:	eb 15                	jmp    804861d <__isoc99_scanf@plt+0x13d>
+ 8048608:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 804860b:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 804860e:	01 d0                	add    eax,edx
+ 8048610:	0f b6 00             	movzx  eax,BYTE PTR [eax]
+ 8048613:	0f b6 c0             	movzx  eax,al
+ 8048616:	01 45 f8             	add    DWORD PTR [ebp-0x8],eax
+ 8048619:	83 45 fc 01          	add    DWORD PTR [ebp-0x4],0x1
+ 804861d:	81 7d fc ff 03 00 00 	cmp    DWORD PTR [ebp-0x4],0x3ff
+ 8048624:	76 e2                	jbe    8048608 <__isoc99_scanf@plt+0x128>
+ 8048626:	81 7d f8 45 23 01 00 	cmp    DWORD PTR [ebp-0x8],0x12345
+ 804862d:	0f 94 c0             	sete   al
+ 8048630:	0f b6 c0             	movzx  eax,al
+ 8048633:	c9                   	leave  
+ 8048634:	c3                   	ret
+
+low-level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+rezerva 8 octeti pe stiva (sa ii numim int sum, i)
+pune 0 in n1
+pune 0 in n2
+pune 0 in n1
+while:
+	compara i cu 1023
+	cat timp e mai mic sau egal
+	muta in edx str
+	muta in eax i
+	adauca in eax edx
+	muta in eax octetul indicat de eax // str[i]
+	muta in eax al // str[i] si al tratati ca unsinged
+	aduna in sum eax
+	aduna 1 in i
+la sfarsit compara sum cu 74565 // 0x12345
+daca  sum == 0x1345 al e setat 1, altfel al e setat 0
+al e extins ca unsinged in eax
+se restituie stiva
+return
+
+high level
+face suma a 1023 de caractere aflate la adresa primita ca parametru
+intoarce prin eax 1 daca suma e egala cu 0x12345 si 0 altfel
+
+vulnerabilitate apelata cu alt parametru poate leak-ui informatii nesecurizate
+sau sa faca programul sa crape (cand acceseaza o zona omterzisa)
+
+
+cum as numi-o
+int check_sum(char* str)
+	

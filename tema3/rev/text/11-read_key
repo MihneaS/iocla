@@ -1,0 +1,31 @@
+ 8048736:	55                   	push   ebp
+ 8048737:	89 e5                	mov    ebp,esp
+ 8048739:	83 ec 04             	sub    esp,0x4
+ 804873c:	6a 18                	push   0x18
+ 804873e:	8d 45 fc             	lea    eax,[ebp-0x4]
+ 8048741:	50                   	push   eax
+ 8048742:	6a 00                	push   0x0
+ 8048744:	e8 27 fd ff ff       	call   8048470 <read@plt>
+ 8048749:	83 c4 0c             	add    esp,0xc
+ 804874c:	c9                   	leave  
+ 804874d:	c3                   	ret    
+
+low-level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se rezerva 4 octeti pe stiva (sa ii numim int n1)
+se pusheaza 24
+se pune in eax &n1
+se pusheaza eax
+se pusheaza 0
+se cheama read(0, &n1, 24)
+se elibereaza stiva
+se returneaza
+
+// vulnerabilitate de buffer overflow: se citesc maxim 24 de octeti in 4 octeti!
+
+high level:
+se citestc maxim 24 de octeti in 4 octei pe stiva
+
+as numi-o
+void read_key()

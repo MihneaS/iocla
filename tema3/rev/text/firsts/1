@@ -1,0 +1,40 @@
+080484f0 <.text>:
+ 80484f0:	31 ed                	xor    ebp,ebp
+ 80484f2:	5e                   	pop    esi
+ 80484f3:	89 e1                	mov    ecx,esp
+ 80484f5:	83 e4 f0             	and    esp,0xfffffff0
+ 80484f8:	50                   	push   eax
+ 80484f9:	54                   	push   esp
+ 80484fa:	52                   	push   edx
+ 80484fb:	68 00 8d 04 08       	push   0x8048d00
+ 8048500:	68 90 8c 04 08       	push   0x8048c90
+ 8048505:	51                   	push   ecx
+ 8048506:	56                   	push   esi
+ 8048507:	68 a9 89 04 08       	push   0x80489a9
+ 804850c:	e8 bf ff ff ff       	call   80484d0 <__libc_start_main@plt>
+ 8048511:	f4                   	hlt    
+ 8048512:	66 90                	xchg   ax,ax
+ 8048514:	66 90                	xchg   ax,ax
+ 8048516:	66 90                	xchg   ax,ax
+ 8048518:	66 90                	xchg   ax,ax
+ 804851a:	66 90                	xchg   ax,ax
+ 804851c:	66 90                	xchg   ax,ax
+ 804851e:	66 90                	xchg   ax,ax
+ 8048520:	8b 1c 24             	mov    ebx,DWORD PTR [esp]
+ 8048523:	c3                   	ret
+
+
+    
+ 8048524:	66 90                	xchg   ax,ax
+ 8048526:	66 90                	xchg   ax,ax
+ 8048528:	66 90                	xchg   ax,ax
+ 804852a:	66 90                	xchg   ax,ax
+ 804852c:	66 90                	xchg   ax,ax
+ 804852e:	66 90                	xchg   ax,ax
+ 8048530:	b8 ff a3 04 08       	mov    eax,0x804a3ff
+ 8048535:	2d fc a3 04 08       	sub    eax,0x804a3fc
+ 804853a:	83 f8 06             	cmp    eax,0x6
+ 804853d:	76 1a                	jbe    8048559 <__isoc99_scanf@plt+0x79>
+ 804853f:	b8 00 00 00 00       	mov    eax,0x0
+ 8048544:	85 c0                	test   eax,eax
+ 8048546:	74 11                	je     8048559 <__isoc99_scanf@plt+0x79>

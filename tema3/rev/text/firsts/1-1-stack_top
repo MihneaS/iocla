@@ -1,0 +1,18 @@
+ 8048520:	8b 1c 24             	mov    ebx,DWORD PTR [esp]
+ 8048523:	c3                   	ret
+
+low-level:
+
+muta in ebx esp
+return
+
+high level
+intoarce prin ebx varful stivei
+
+cum as numi-o
+
+void* stack_top()
+
+
+
+

@@ -1,0 +1,131 @@
+
+
+ 804874e:	55                   	push   ebp
+ 804874f:	89 e5                	mov    ebp,esp
+ 8048751:	81 ec 04 04 00 00    	sub    esp,0x404
+ 8048757:	a1 94 a2 04 08       	mov    eax,ds:0x804a294
+ 804875c:	85 c0                	test   eax,eax
+ 804875e:	0f 85 b8 00 00 00    	jne    804881c <__isoc99_scanf@plt+0x33c>
+ 8048764:	a1 98 a2 04 08       	mov    eax,ds:0x804a298
+ 8048769:	85 c0                	test   eax,eax
+ 804876b:	0f 85 ab 00 00 00    	jne    804881c <__isoc99_scanf@plt+0x33c>
+ 8048771:	a1 9c a2 04 08       	mov    eax,ds:0x804a29c
+ 8048776:	85 c0                	test   eax,eax
+ 8048778:	0f 85 9e 00 00 00    	jne    804881c <__isoc99_scanf@plt+0x33c>
+ 804877e:	68 00 04 00 00       	push   0x400
+ 8048783:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 8048789:	50                   	push   eax
+ 804878a:	6a 00                	push   0x0
+ 804878c:	e8 df fc ff ff       	call   8048470 <read@plt>
+ 8048791:	83 c4 0c             	add    esp,0xc
+ 8048794:	c6 45 ff 00          	mov    BYTE PTR [ebp-0x1],0x0
+ 8048798:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 804879d:	68 00 04 00 00       	push   0x400
+ 80487a2:	50                   	push   eax
+ 80487a3:	e8 8d fe ff ff       	call   8048635 <__isoc99_scanf@plt+0x155>
+ 80487a8:	83 c4 08             	add    esp,0x8
+ 80487ab:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 80487b1:	50                   	push   eax
+ 80487b2:	e8 34 fe ff ff       	call   80485eb <__isoc99_scanf@plt+0x10b>
+ 80487b7:	83 c4 04             	add    esp,0x4
+ 80487ba:	85 c0                	test   eax,eax
+ 80487bc:	75 02                	jne    80487c0 <__isoc99_scanf@plt+0x2e0>
+ 80487be:	eb 69                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 80487c0:	68 80 a2 04 08       	push   0x804a280
+ 80487c5:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 80487cb:	50                   	push   eax
+ 80487cc:	e8 7f fc ff ff       	call   8048450 <strstr@plt>
+ 80487d1:	83 c4 08             	add    esp,0x8
+ 80487d4:	85 c0                	test   eax,eax
+ 80487d6:	75 02                	jne    80487da <__isoc99_scanf@plt+0x2fa>
+ 80487d8:	eb 4f                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 80487da:	68 87 a2 04 08       	push   0x804a287
+ 80487df:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 80487e5:	50                   	push   eax
+ 80487e6:	e8 65 fc ff ff       	call   8048450 <strstr@plt>
+ 80487eb:	83 c4 08             	add    esp,0x8
+ 80487ee:	85 c0                	test   eax,eax
+ 80487f0:	75 02                	jne    80487f4 <__isoc99_scanf@plt+0x314>
+ 80487f2:	eb 35                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 80487f4:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 80487f9:	6a 05                	push   0x5
+ 80487fb:	68 00 04 00 00       	push   0x400
+ 8048800:	50                   	push   eax
+ 8048801:	e8 5a fc ff ff       	call   8048460 <mprotect@plt>
+ 8048806:	83 c4 0c             	add    esp,0xc
+ 8048809:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 804880e:	8d 95 ff fb ff ff    	lea    edx,[ebp-0x401]
+ 8048814:	52                   	push   edx
+ 8048815:	ff d0                	call   eax
+ 8048817:	83 c4 04             	add    esp,0x4
+ 804881a:	eb 0d                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 804881c:	68 8e 8d 04 08       	push   0x8048d8e
+ 8048821:	e8 6a fc ff ff       	call   8048490 <puts@plt>
+ 8048826:	83 c4 04             	add    esp,0x4
+ 8048829:	c9                   	leave  
+ 804882a:	c3                   	ret 
+
+
+low-level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+rezerva pe stiva 1028 de octeti (sa nummim aceasta zona
+char pad[3],str[1025])
+muta in eax o variabila globala (s-o numim global_int1) ce initial are valoarea 1
+testeaza daca e 0,
+daca nu e 0 pusheaza "Vault is still locked."
+cheama puts("Vault is still locked.")
+elibereaza stiva de ultimul parametru
+restituie stiva
+retunrn
+daca nu continua functia
+analog pt inca 2 variabile globale (sa le numim global_int2 si global_int3)
+daca toate toate cele 3 variabile globale sunt 0
+pusheaza 1024
+pune in eax str
+pusheaza eax
+pusheaza 0
+cheama read(0, str, 1024)
+elibereaza stiva de variabile
+/*
+asta inseamna citire de la stdin 1024 de octeti in str
+*/
+se pune in str[1024] 0
+se pune in eax adresa alocata pe heap
+se pusheaza 1024
+se pusheaza eax
+se cheama xor_with_170(heap_address, 1024)
+se elimina parametrii de pe stiva
+se pune in eax str
+se pusheaza eax
+se cheama check_sum(str) // verifica daca suma a 1024 de caractere din str este 0x12345 si returneaza in eax 1 daca este si 0 aca nu
+daca este restaureaza stiva si return
+daca nu pusheaza o variabila globala pe care o s-o numesc prenume
+pune str in eax
+pusheaza str
+cheama strstr(str, prenume)
+curata stiva de argumente
+verifica daca str a intors 0 in eax
+daca da /*nu a gasit prenume in str*/ restaureaza stiva return
+altfel analog pt o variabila globala pe care o s-o numesc nume
+daca da /* nu a gasit nume in str*/ restaureaza stiva return
+altfel
+pun heap address in eax
+push 5
+push 1024
+push eax
+cheama mprotect(heap_address, 1024, 5) // se pun drepturi ce citire si executie pe 1024 de octet iincepand la heap_address
+se curata stiva de argumente
+se pune heap address in eax
+se pune str in edx
+se pusheaza edx
+se cheama eax(str)
+se curata stiva de argumente
+se restaureaza stiva
+return
+
+vulnerabilitate: SE DA DREPT DE EXECUTIE SI CITIRE PE 1024 DE OCTETI SI SUNT
+APELATI CU ALTI 1024 DE OCTETI, daca pot icontrola cele 2 blocuri de 1024 de octeti poti executa orice
+
+cum as numi-o
+void send_magic_string()

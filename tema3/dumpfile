@@ -1,0 +1,810 @@
+
+tema3:     file format elf32-i386
+
+
+Disassembly of section .init:
+
+08048404 <.init>:
+ 8048404:	53                   	push   ebx
+ 8048405:	83 ec 08             	sub    esp,0x8
+ 8048408:	e8 13 01 00 00       	call   8048520 <__isoc99_scanf@plt+0x40>
+ 804840d:	81 c3 db 1d 00 00    	add    ebx,0x1ddb
+ 8048413:	8b 83 fc ff ff ff    	mov    eax,DWORD PTR [ebx-0x4]
+ 8048419:	85 c0                	test   eax,eax
+ 804841b:	74 05                	je     8048422 <setbuf@plt-0x1e>
+ 804841d:	e8 7e 00 00 00       	call   80484a0 <__gmon_start__@plt>
+ 8048422:	83 c4 08             	add    esp,0x8
+ 8048425:	5b                   	pop    ebx
+ 8048426:	c3                   	ret    
+
+Disassembly of section .plt:
+
+08048430 <setbuf@plt-0x10>:
+ 8048430:	ff 35 ec a1 04 08    	push   DWORD PTR ds:0x804a1ec
+ 8048436:	ff 25 f0 a1 04 08    	jmp    DWORD PTR ds:0x804a1f0
+ 804843c:	00 00                	add    BYTE PTR [eax],al
+	...
+
+08048440 <setbuf@plt>:
+ 8048440:	ff 25 f4 a1 04 08    	jmp    DWORD PTR ds:0x804a1f4
+ 8048446:	68 00 00 00 00       	push   0x0
+ 804844b:	e9 e0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048450 <strstr@plt>:
+ 8048450:	ff 25 f8 a1 04 08    	jmp    DWORD PTR ds:0x804a1f8
+ 8048456:	68 08 00 00 00       	push   0x8
+ 804845b:	e9 d0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048460 <mprotect@plt>:
+ 8048460:	ff 25 fc a1 04 08    	jmp    DWORD PTR ds:0x804a1fc
+ 8048466:	68 10 00 00 00       	push   0x10
+ 804846b:	e9 c0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048470 <read@plt>:
+ 8048470:	ff 25 00 a2 04 08    	jmp    DWORD PTR ds:0x804a200
+ 8048476:	68 18 00 00 00       	push   0x18
+ 804847b:	e9 b0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048480 <printf@plt>:
+ 8048480:	ff 25 04 a2 04 08    	jmp    DWORD PTR ds:0x804a204
+ 8048486:	68 20 00 00 00       	push   0x20
+ 804848b:	e9 a0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048490 <puts@plt>:
+ 8048490:	ff 25 08 a2 04 08    	jmp    DWORD PTR ds:0x804a208
+ 8048496:	68 28 00 00 00       	push   0x28
+ 804849b:	e9 90 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484a0 <__gmon_start__@plt>:
+ 80484a0:	ff 25 0c a2 04 08    	jmp    DWORD PTR ds:0x804a20c
+ 80484a6:	68 30 00 00 00       	push   0x30
+ 80484ab:	e9 80 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484b0 <exit@plt>:
+ 80484b0:	ff 25 10 a2 04 08    	jmp    DWORD PTR ds:0x804a210
+ 80484b6:	68 38 00 00 00       	push   0x38
+ 80484bb:	e9 70 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484c0 <mmap@plt>:
+ 80484c0:	ff 25 14 a2 04 08    	jmp    DWORD PTR ds:0x804a214
+ 80484c6:	68 40 00 00 00       	push   0x40
+ 80484cb:	e9 60 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484d0 <__libc_start_main@plt>:
+ 80484d0:	ff 25 18 a2 04 08    	jmp    DWORD PTR ds:0x804a218
+ 80484d6:	68 48 00 00 00       	push   0x48
+ 80484db:	e9 50 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484e0 <__isoc99_scanf@plt>:
+ 80484e0:	ff 25 1c a2 04 08    	jmp    DWORD PTR ds:0x804a21c
+ 80484e6:	68 50 00 00 00       	push   0x50
+ 80484eb:	e9 40 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+Disassembly of section .text:
+
+080484f0 <.text>:
+ 80484f0:	31 ed                	xor    ebp,ebp
+ 80484f2:	5e                   	pop    esi
+ 80484f3:	89 e1                	mov    ecx,esp
+ 80484f5:	83 e4 f0             	and    esp,0xfffffff0
+ 80484f8:	50                   	push   eax
+ 80484f9:	54                   	push   esp
+ 80484fa:	52                   	push   edx
+ 80484fb:	68 00 8d 04 08       	push   0x8048d00
+ 8048500:	68 90 8c 04 08       	push   0x8048c90
+ 8048505:	51                   	push   ecx
+ 8048506:	56                   	push   esi
+ 8048507:	68 a9 89 04 08       	push   0x80489a9
+ 804850c:	e8 bf ff ff ff       	call   80484d0 <__libc_start_main@plt>
+ 8048511:	f4                   	hlt    
+ 8048512:	66 90                	xchg   ax,ax
+ 8048514:	66 90                	xchg   ax,ax
+ 8048516:	66 90                	xchg   ax,ax
+ 8048518:	66 90                	xchg   ax,ax
+ 804851a:	66 90                	xchg   ax,ax
+ 804851c:	66 90                	xchg   ax,ax
+ 804851e:	66 90                	xchg   ax,ax
+ 8048520:	8b 1c 24             	mov    ebx,DWORD PTR [esp]
+ 8048523:	c3                   	ret    
+ 8048524:	66 90                	xchg   ax,ax
+ 8048526:	66 90                	xchg   ax,ax
+ 8048528:	66 90                	xchg   ax,ax
+ 804852a:	66 90                	xchg   ax,ax
+ 804852c:	66 90                	xchg   ax,ax
+ 804852e:	66 90                	xchg   ax,ax
+ 8048530:	b8 ff a3 04 08       	mov    eax,0x804a3ff
+ 8048535:	2d fc a3 04 08       	sub    eax,0x804a3fc
+ 804853a:	83 f8 06             	cmp    eax,0x6
+ 804853d:	76 1a                	jbe    8048559 <__isoc99_scanf@plt+0x79>
+ 804853f:	b8 00 00 00 00       	mov    eax,0x0
+ 8048544:	85 c0                	test   eax,eax
+ 8048546:	74 11                	je     8048559 <__isoc99_scanf@plt+0x79>
+ 8048548:	55                   	push   ebp
+ 8048549:	89 e5                	mov    ebp,esp
+ 804854b:	83 ec 14             	sub    esp,0x14
+ 804854e:	68 fc a3 04 08       	push   0x804a3fc
+ 8048553:	ff d0                	call   eax
+ 8048555:	83 c4 10             	add    esp,0x10
+ 8048558:	c9                   	leave  
+ 8048559:	f3 c3                	repz ret 
+ 804855b:	90                   	nop
+ 804855c:	8d 74 26 00          	lea    esi,[esi+eiz*1+0x0]
+ 8048560:	b8 fc a3 04 08       	mov    eax,0x804a3fc
+ 8048565:	2d fc a3 04 08       	sub    eax,0x804a3fc
+ 804856a:	c1 f8 02             	sar    eax,0x2
+ 804856d:	89 c2                	mov    edx,eax
+ 804856f:	c1 ea 1f             	shr    edx,0x1f
+ 8048572:	01 d0                	add    eax,edx
+ 8048574:	d1 f8                	sar    eax,1
+ 8048576:	74 1b                	je     8048593 <__isoc99_scanf@plt+0xb3>
+ 8048578:	ba 00 00 00 00       	mov    edx,0x0
+ 804857d:	85 d2                	test   edx,edx
+ 804857f:	74 12                	je     8048593 <__isoc99_scanf@plt+0xb3>
+ 8048581:	55                   	push   ebp
+ 8048582:	89 e5                	mov    ebp,esp
+ 8048584:	83 ec 10             	sub    esp,0x10
+ 8048587:	50                   	push   eax
+ 8048588:	68 fc a3 04 08       	push   0x804a3fc
+ 804858d:	ff d2                	call   edx
+ 804858f:	83 c4 10             	add    esp,0x10
+ 8048592:	c9                   	leave  
+ 8048593:	f3 c3                	repz ret 
+ 8048595:	8d 74 26 00          	lea    esi,[esi+eiz*1+0x0]
+ 8048599:	8d bc 27 00 00 00 00 	lea    edi,[edi+eiz*1+0x0]
+ 80485a0:	80 3d 24 a4 04 08 00 	cmp    BYTE PTR ds:0x804a424,0x0
+ 80485a7:	75 13                	jne    80485bc <__isoc99_scanf@plt+0xdc>
+ 80485a9:	55                   	push   ebp
+ 80485aa:	89 e5                	mov    ebp,esp
+ 80485ac:	83 ec 08             	sub    esp,0x8
+ 80485af:	e8 7c ff ff ff       	call   8048530 <__isoc99_scanf@plt+0x50>
+ 80485b4:	c6 05 24 a4 04 08 01 	mov    BYTE PTR ds:0x804a424,0x1
+ 80485bb:	c9                   	leave  
+ 80485bc:	f3 c3                	repz ret 
+ 80485be:	66 90                	xchg   ax,ax
+ 80485c0:	b8 f8 a0 04 08       	mov    eax,0x804a0f8
+ 80485c5:	8b 10                	mov    edx,DWORD PTR [eax]
+ 80485c7:	85 d2                	test   edx,edx
+ 80485c9:	75 05                	jne    80485d0 <__isoc99_scanf@plt+0xf0>
+ 80485cb:	eb 93                	jmp    8048560 <__isoc99_scanf@plt+0x80>
+ 80485cd:	8d 76 00             	lea    esi,[esi+0x0]
+ 80485d0:	ba 00 00 00 00       	mov    edx,0x0
+ 80485d5:	85 d2                	test   edx,edx
+ 80485d7:	74 f2                	je     80485cb <__isoc99_scanf@plt+0xeb>
+ 80485d9:	55                   	push   ebp
+ 80485da:	89 e5                	mov    ebp,esp
+ 80485dc:	83 ec 14             	sub    esp,0x14
+ 80485df:	50                   	push   eax
+ 80485e0:	ff d2                	call   edx
+ 80485e2:	83 c4 10             	add    esp,0x10
+ 80485e5:	c9                   	leave  
+ 80485e6:	e9 75 ff ff ff       	jmp    8048560 <__isoc99_scanf@plt+0x80>
+ 80485eb:	55                   	push   ebp
+ 80485ec:	89 e5                	mov    ebp,esp
+ 80485ee:	83 ec 08             	sub    esp,0x8
+ 80485f1:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 80485f8:	c7 45 f8 00 00 00 00 	mov    DWORD PTR [ebp-0x8],0x0
+ 80485ff:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 8048606:	eb 15                	jmp    804861d <__isoc99_scanf@plt+0x13d>
+ 8048608:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 804860b:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 804860e:	01 d0                	add    eax,edx
+ 8048610:	0f b6 00             	movzx  eax,BYTE PTR [eax]
+ 8048613:	0f b6 c0             	movzx  eax,al
+ 8048616:	01 45 f8             	add    DWORD PTR [ebp-0x8],eax
+ 8048619:	83 45 fc 01          	add    DWORD PTR [ebp-0x4],0x1
+ 804861d:	81 7d fc ff 03 00 00 	cmp    DWORD PTR [ebp-0x4],0x3ff
+ 8048624:	76 e2                	jbe    8048608 <__isoc99_scanf@plt+0x128>
+ 8048626:	81 7d f8 45 23 01 00 	cmp    DWORD PTR [ebp-0x8],0x12345
+ 804862d:	0f 94 c0             	sete   al
+ 8048630:	0f b6 c0             	movzx  eax,al
+ 8048633:	c9                   	leave  
+ 8048634:	c3                   	ret    
+ 8048635:	55                   	push   ebp
+ 8048636:	89 e5                	mov    ebp,esp
+ 8048638:	83 ec 08             	sub    esp,0x8
+ 804863b:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 8048642:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 8048649:	eb 24                	jmp    804866f <__isoc99_scanf@plt+0x18f>
+ 804864b:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 804864e:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048651:	01 d0                	add    eax,edx
+ 8048653:	0f b6 00             	movzx  eax,BYTE PTR [eax]
+ 8048656:	88 45 fb             	mov    BYTE PTR [ebp-0x5],al
+ 8048659:	80 75 fb aa          	xor    BYTE PTR [ebp-0x5],0xaa
+ 804865d:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 8048660:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048663:	01 c2                	add    edx,eax
+ 8048665:	0f b6 45 fb          	movzx  eax,BYTE PTR [ebp-0x5]
+ 8048669:	88 02                	mov    BYTE PTR [edx],al
+ 804866b:	83 45 fc 01          	add    DWORD PTR [ebp-0x4],0x1
+ 804866f:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048672:	3b 45 0c             	cmp    eax,DWORD PTR [ebp+0xc]
+ 8048675:	72 d4                	jb     804864b <__isoc99_scanf@plt+0x16b>
+ 8048677:	c9                   	leave  
+ 8048678:	c3                   	ret    
+ 8048679:	55                   	push   ebp
+ 804867a:	89 e5                	mov    ebp,esp
+ 804867c:	83 ec 20             	sub    esp,0x20
+ 804867f:	b9 00 00 00 00       	mov    ecx,0x0
+ 8048684:	b8 20 00 00 00       	mov    eax,0x20
+ 8048689:	83 e0 fc             	and    eax,0xfffffffc
+ 804868c:	89 c2                	mov    edx,eax
+ 804868e:	b8 00 00 00 00       	mov    eax,0x0
+ 8048693:	89 4c 05 e0          	mov    DWORD PTR [ebp+eax*1-0x20],ecx
+ 8048697:	83 c0 04             	add    eax,0x4
+ 804869a:	39 d0                	cmp    eax,edx
+ 804869c:	72 f5                	jb     8048693 <__isoc99_scanf@plt+0x1b3>
+ 804869e:	68 20 8d 04 08       	push   0x8048d20
+ 80486a3:	e8 e8 fd ff ff       	call   8048490 <puts@plt>
+ 80486a8:	83 c4 04             	add    esp,0x4
+ 80486ab:	8d 45 e0             	lea    eax,[ebp-0x20]
+ 80486ae:	50                   	push   eax
+ 80486af:	68 39 8d 04 08       	push   0x8048d39
+ 80486b4:	e8 27 fe ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 80486b9:	83 c4 08             	add    esp,0x8
+ 80486bc:	8d 45 e0             	lea    eax,[ebp-0x20]
+ 80486bf:	50                   	push   eax
+ 80486c0:	e8 98 03 00 00       	call   8048a5d <__isoc99_scanf@plt+0x57d>
+ 80486c5:	83 c4 04             	add    esp,0x4
+ 80486c8:	85 c0                	test   eax,eax
+ 80486ca:	74 0f                	je     80486db <__isoc99_scanf@plt+0x1fb>
+ 80486cc:	68 3e 8d 04 08       	push   0x8048d3e
+ 80486d1:	e8 ba fd ff ff       	call   8048490 <puts@plt>
+ 80486d6:	83 c4 04             	add    esp,0x4
+ 80486d9:	eb 0d                	jmp    80486e8 <__isoc99_scanf@plt+0x208>
+ 80486db:	68 47 8d 04 08       	push   0x8048d47
+ 80486e0:	e8 ab fd ff ff       	call   8048490 <puts@plt>
+ 80486e5:	83 c4 04             	add    esp,0x4
+ 80486e8:	c9                   	leave  
+ 80486e9:	c3                   	ret    
+ 80486ea:	55                   	push   ebp
+ 80486eb:	89 e5                	mov    ebp,esp
+ 80486ed:	83 ec 14             	sub    esp,0x14
+ 80486f0:	68 58 8d 04 08       	push   0x8048d58
+ 80486f5:	e8 86 fd ff ff       	call   8048480 <printf@plt>
+ 80486fa:	83 c4 04             	add    esp,0x4
+ 80486fd:	8d 45 ec             	lea    eax,[ebp-0x14]
+ 8048700:	50                   	push   eax
+ 8048701:	68 71 8d 04 08       	push   0x8048d71
+ 8048706:	e8 d5 fd ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 804870b:	83 c4 08             	add    esp,0x8
+ 804870e:	c9                   	leave  
+ 804870f:	c3                   	ret    
+ 8048710:	55                   	push   ebp
+ 8048711:	89 e5                	mov    ebp,esp
+ 8048713:	83 ec 10             	sub    esp,0x10
+ 8048716:	68 76 8d 04 08       	push   0x8048d76
+ 804871b:	e8 60 fd ff ff       	call   8048480 <printf@plt>
+ 8048720:	83 c4 04             	add    esp,0x4
+ 8048723:	8d 45 f0             	lea    eax,[ebp-0x10]
+ 8048726:	50                   	push   eax
+ 8048727:	68 71 8d 04 08       	push   0x8048d71
+ 804872c:	e8 af fd ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 8048731:	83 c4 08             	add    esp,0x8
+ 8048734:	c9                   	leave  
+ 8048735:	c3                   	ret    
+ 8048736:	55                   	push   ebp
+ 8048737:	89 e5                	mov    ebp,esp
+ 8048739:	83 ec 04             	sub    esp,0x4
+ 804873c:	6a 18                	push   0x18
+ 804873e:	8d 45 fc             	lea    eax,[ebp-0x4]
+ 8048741:	50                   	push   eax
+ 8048742:	6a 00                	push   0x0
+ 8048744:	e8 27 fd ff ff       	call   8048470 <read@plt>
+ 8048749:	83 c4 0c             	add    esp,0xc
+ 804874c:	c9                   	leave  
+ 804874d:	c3                   	ret    
+ 804874e:	55                   	push   ebp
+ 804874f:	89 e5                	mov    ebp,esp
+ 8048751:	81 ec 04 04 00 00    	sub    esp,0x404
+ 8048757:	a1 94 a2 04 08       	mov    eax,ds:0x804a294
+ 804875c:	85 c0                	test   eax,eax
+ 804875e:	0f 85 b8 00 00 00    	jne    804881c <__isoc99_scanf@plt+0x33c>
+ 8048764:	a1 98 a2 04 08       	mov    eax,ds:0x804a298
+ 8048769:	85 c0                	test   eax,eax
+ 804876b:	0f 85 ab 00 00 00    	jne    804881c <__isoc99_scanf@plt+0x33c>
+ 8048771:	a1 9c a2 04 08       	mov    eax,ds:0x804a29c
+ 8048776:	85 c0                	test   eax,eax
+ 8048778:	0f 85 9e 00 00 00    	jne    804881c <__isoc99_scanf@plt+0x33c>
+ 804877e:	68 00 04 00 00       	push   0x400
+ 8048783:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 8048789:	50                   	push   eax
+ 804878a:	6a 00                	push   0x0
+ 804878c:	e8 df fc ff ff       	call   8048470 <read@plt>
+ 8048791:	83 c4 0c             	add    esp,0xc
+ 8048794:	c6 45 ff 00          	mov    BYTE PTR [ebp-0x1],0x0
+ 8048798:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 804879d:	68 00 04 00 00       	push   0x400
+ 80487a2:	50                   	push   eax
+ 80487a3:	e8 8d fe ff ff       	call   8048635 <__isoc99_scanf@plt+0x155>
+ 80487a8:	83 c4 08             	add    esp,0x8
+ 80487ab:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 80487b1:	50                   	push   eax
+ 80487b2:	e8 34 fe ff ff       	call   80485eb <__isoc99_scanf@plt+0x10b>
+ 80487b7:	83 c4 04             	add    esp,0x4
+ 80487ba:	85 c0                	test   eax,eax
+ 80487bc:	75 02                	jne    80487c0 <__isoc99_scanf@plt+0x2e0>
+ 80487be:	eb 69                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 80487c0:	68 80 a2 04 08       	push   0x804a280
+ 80487c5:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 80487cb:	50                   	push   eax
+ 80487cc:	e8 7f fc ff ff       	call   8048450 <strstr@plt>
+ 80487d1:	83 c4 08             	add    esp,0x8
+ 80487d4:	85 c0                	test   eax,eax
+ 80487d6:	75 02                	jne    80487da <__isoc99_scanf@plt+0x2fa>
+ 80487d8:	eb 4f                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 80487da:	68 87 a2 04 08       	push   0x804a287
+ 80487df:	8d 85 ff fb ff ff    	lea    eax,[ebp-0x401]
+ 80487e5:	50                   	push   eax
+ 80487e6:	e8 65 fc ff ff       	call   8048450 <strstr@plt>
+ 80487eb:	83 c4 08             	add    esp,0x8
+ 80487ee:	85 c0                	test   eax,eax
+ 80487f0:	75 02                	jne    80487f4 <__isoc99_scanf@plt+0x314>
+ 80487f2:	eb 35                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 80487f4:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 80487f9:	6a 05                	push   0x5
+ 80487fb:	68 00 04 00 00       	push   0x400
+ 8048800:	50                   	push   eax
+ 8048801:	e8 5a fc ff ff       	call   8048460 <mprotect@plt>
+ 8048806:	83 c4 0c             	add    esp,0xc
+ 8048809:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 804880e:	8d 95 ff fb ff ff    	lea    edx,[ebp-0x401]
+ 8048814:	52                   	push   edx
+ 8048815:	ff d0                	call   eax
+ 8048817:	83 c4 04             	add    esp,0x4
+ 804881a:	eb 0d                	jmp    8048829 <__isoc99_scanf@plt+0x349>
+ 804881c:	68 8e 8d 04 08       	push   0x8048d8e
+ 8048821:	e8 6a fc ff ff       	call   8048490 <puts@plt>
+ 8048826:	83 c4 04             	add    esp,0x4
+ 8048829:	c9                   	leave  
+ 804882a:	c3                   	ret    
+ 804882b:	55                   	push   ebp
+ 804882c:	89 e5                	mov    ebp,esp
+ 804882e:	83 ec 04             	sub    esp,0x4
+ 8048831:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 8048836:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+ 8048839:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 804883c:	c1 e0 10             	shl    eax,0x10
+ 804883f:	33 45 fc             	xor    eax,DWORD PTR [ebp-0x4]
+ 8048842:	69 c0 3a 9f 5d 04    	imul   eax,eax,0x45d9f3a
+ 8048848:	89 c2                	mov    edx,eax
+ 804884a:	a1 a0 a2 04 08       	mov    eax,ds:0x804a2a0
+ 804884f:	39 c2                	cmp    edx,eax
+ 8048851:	75 0f                	jne    8048862 <__isoc99_scanf@plt+0x382>
+ 8048853:	68 a5 8d 04 08       	push   0x8048da5
+ 8048858:	e8 33 fc ff ff       	call   8048490 <puts@plt>
+ 804885d:	83 c4 04             	add    esp,0x4
+ 8048860:	eb 0d                	jmp    804886f <__isoc99_scanf@plt+0x38f>
+ 8048862:	68 aa 8d 04 08       	push   0x8048daa
+ 8048867:	e8 24 fc ff ff       	call   8048490 <puts@plt>
+ 804886c:	83 c4 04             	add    esp,0x4
+ 804886f:	c9                   	leave  
+ 8048870:	c3                   	ret    
+ 8048871:	55                   	push   ebp
+ 8048872:	89 e5                	mov    ebp,esp
+ 8048874:	68 c0 a2 04 08       	push   0x804a2c0
+ 8048879:	e8 12 fc ff ff       	call   8048490 <puts@plt>
+ 804887e:	83 c4 04             	add    esp,0x4
+ 8048881:	c9                   	leave  
+ 8048882:	c3                   	ret    
+ 8048883:	55                   	push   ebp
+ 8048884:	89 e5                	mov    ebp,esp
+ 8048886:	68 40 a3 04 08       	push   0x804a340
+ 804888b:	e8 00 fc ff ff       	call   8048490 <puts@plt>
+ 8048890:	83 c4 04             	add    esp,0x4
+ 8048893:	c9                   	leave  
+ 8048894:	c3                   	ret    
+ 8048895:	55                   	push   ebp
+ 8048896:	89 e5                	mov    ebp,esp
+ 8048898:	c7 05 94 a2 04 08 00 	mov    DWORD PTR ds:0x804a294,0x0
+ 804889f:	00 00 00 
+ 80488a2:	8b 0d 28 a4 04 08    	mov    ecx,DWORD PTR ds:0x804a428
+ 80488a8:	a1 a4 a2 04 08       	mov    eax,ds:0x804a2a4
+ 80488ad:	8b 15 a8 a2 04 08    	mov    edx,DWORD PTR ds:0x804a2a8
+ 80488b3:	89 01                	mov    DWORD PTR [ecx],eax
+ 80488b5:	89 51 04             	mov    DWORD PTR [ecx+0x4],edx
+ 80488b8:	5d                   	pop    ebp
+ 80488b9:	c3                   	ret    
+ 80488ba:	55                   	push   ebp
+ 80488bb:	89 e5                	mov    ebp,esp
+ 80488bd:	81 7d 08 de c0 ad de 	cmp    DWORD PTR [ebp+0x8],0xdeadc0de
+ 80488c4:	75 22                	jne    80488e8 <__isoc99_scanf@plt+0x408>
+ 80488c6:	c7 05 98 a2 04 08 00 	mov    DWORD PTR ds:0x804a298,0x0
+ 80488cd:	00 00 00 
+ 80488d0:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 80488d5:	8d 48 08             	lea    ecx,[eax+0x8]
+ 80488d8:	a1 ac a2 04 08       	mov    eax,ds:0x804a2ac
+ 80488dd:	8b 15 b0 a2 04 08    	mov    edx,DWORD PTR ds:0x804a2b0
+ 80488e3:	89 01                	mov    DWORD PTR [ecx],eax
+ 80488e5:	89 51 04             	mov    DWORD PTR [ecx+0x4],edx
+ 80488e8:	5d                   	pop    ebp
+ 80488e9:	c3                   	ret    
+ 80488ea:	55                   	push   ebp
+ 80488eb:	89 e5                	mov    ebp,esp
+ 80488ed:	83 ec 08             	sub    esp,0x8
+ 80488f0:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 80488f3:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 80488f6:	01 d0                	add    eax,edx
+ 80488f8:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+ 80488fb:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 80488fe:	2b 45 0c             	sub    eax,DWORD PTR [ebp+0xc]
+ 8048901:	89 45 f8             	mov    DWORD PTR [ebp-0x8],eax
+ 8048904:	81 7d fc ef be ad de 	cmp    DWORD PTR [ebp-0x4],0xdeadbeef
+ 804890b:	75 2b                	jne    8048938 <__isoc99_scanf@plt+0x458>
+ 804890d:	81 7d f8 37 13 37 13 	cmp    DWORD PTR [ebp-0x8],0x13371337
+ 8048914:	75 22                	jne    8048938 <__isoc99_scanf@plt+0x458>
+ 8048916:	c7 05 9c a2 04 08 00 	mov    DWORD PTR ds:0x804a29c,0x0
+ 804891d:	00 00 00 
+ 8048920:	a1 28 a4 04 08       	mov    eax,ds:0x804a428
+ 8048925:	8d 48 10             	lea    ecx,[eax+0x10]
+ 8048928:	a1 b4 a2 04 08       	mov    eax,ds:0x804a2b4
+ 804892d:	8b 15 b8 a2 04 08    	mov    edx,DWORD PTR ds:0x804a2b8
+ 8048933:	89 01                	mov    DWORD PTR [ecx],eax
+ 8048935:	89 51 04             	mov    DWORD PTR [ecx+0x4],edx
+ 8048938:	c9                   	leave  
+ 8048939:	c3                   	ret    
+ 804893a:	55                   	push   ebp
+ 804893b:	89 e5                	mov    ebp,esp
+ 804893d:	83 ec 04             	sub    esp,0x4
+ 8048940:	8d 45 fc             	lea    eax,[ebp-0x4]
+ 8048943:	50                   	push   eax
+ 8048944:	68 b6 8d 04 08       	push   0x8048db6
+ 8048949:	e8 92 fb ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 804894e:	83 c4 08             	add    esp,0x8
+ 8048951:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048954:	83 f8 05             	cmp    eax,0x5
+ 8048957:	77 40                	ja     8048999 <__isoc99_scanf@plt+0x4b9>
+ 8048959:	8b 04 85 d0 8d 04 08 	mov    eax,DWORD PTR [eax*4+0x8048dd0]
+ 8048960:	ff e0                	jmp    eax
+ 8048962:	e8 12 fd ff ff       	call   8048679 <__isoc99_scanf@plt+0x199>
+ 8048967:	eb 3e                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048969:	e8 7c fd ff ff       	call   80486ea <__isoc99_scanf@plt+0x20a>
+ 804896e:	eb 37                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048970:	e8 9b fd ff ff       	call   8048710 <__isoc99_scanf@plt+0x230>
+ 8048975:	eb 30                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048977:	e8 ba fd ff ff       	call   8048736 <__isoc99_scanf@plt+0x256>
+ 804897c:	eb 29                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 804897e:	e8 cb fd ff ff       	call   804874e <__isoc99_scanf@plt+0x26e>
+ 8048983:	eb 22                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048985:	68 ba 8d 04 08       	push   0x8048dba
+ 804898a:	e8 01 fb ff ff       	call   8048490 <puts@plt>
+ 804898f:	83 c4 04             	add    esp,0x4
+ 8048992:	6a 01                	push   0x1
+ 8048994:	e8 17 fb ff ff       	call   80484b0 <exit@plt>
+ 8048999:	68 bf 8d 04 08       	push   0x8048dbf
+ 804899e:	e8 ed fa ff ff       	call   8048490 <puts@plt>
+ 80489a3:	83 c4 04             	add    esp,0x4
+ 80489a6:	90                   	nop
+ 80489a7:	c9                   	leave  
+ 80489a8:	c3                   	ret    
+ 80489a9:	55                   	push   ebp
+ 80489aa:	89 e5                	mov    ebp,esp
+ 80489ac:	a1 00 a4 04 08       	mov    eax,ds:0x804a400
+ 80489b1:	6a 00                	push   0x0
+ 80489b3:	50                   	push   eax
+ 80489b4:	e8 87 fa ff ff       	call   8048440 <setbuf@plt>
+ 80489b9:	83 c4 08             	add    esp,0x8
+ 80489bc:	a1 20 a4 04 08       	mov    eax,ds:0x804a420
+ 80489c1:	6a 00                	push   0x0
+ 80489c3:	50                   	push   eax
+ 80489c4:	e8 77 fa ff ff       	call   8048440 <setbuf@plt>
+ 80489c9:	83 c4 08             	add    esp,0x8
+ 80489cc:	6a 00                	push   0x0
+ 80489ce:	6a ff                	push   0xffffffff
+ 80489d0:	6a 22                	push   0x22
+ 80489d2:	6a 03                	push   0x3
+ 80489d4:	68 00 04 00 00       	push   0x400
+ 80489d9:	6a 00                	push   0x0
+ 80489db:	e8 e0 fa ff ff       	call   80484c0 <mmap@plt>
+ 80489e0:	83 c4 18             	add    esp,0x18
+ 80489e3:	a3 28 a4 04 08       	mov    ds:0x804a428,eax
+ 80489e8:	6a 69                	push   0x69
+ 80489ea:	68 c0 a2 04 08       	push   0x804a2c0
+ 80489ef:	e8 41 fc ff ff       	call   8048635 <__isoc99_scanf@plt+0x155>
+ 80489f4:	83 c4 08             	add    esp,0x8
+ 80489f7:	68 b9 00 00 00       	push   0xb9
+ 80489fc:	68 40 a3 04 08       	push   0x804a340
+ 8048a01:	e8 2f fc ff ff       	call   8048635 <__isoc99_scanf@plt+0x155>
+ 8048a06:	83 c4 08             	add    esp,0x8
+ 8048a09:	e8 63 fe ff ff       	call   8048871 <__isoc99_scanf@plt+0x391>
+ 8048a0e:	e8 70 fe ff ff       	call   8048883 <__isoc99_scanf@plt+0x3a3>
+ 8048a13:	e8 22 ff ff ff       	call   804893a <__isoc99_scanf@plt+0x45a>
+ 8048a18:	eb f4                	jmp    8048a0e <__isoc99_scanf@plt+0x52e>
+ 8048a1a:	66 90                	xchg   ax,ax
+ 8048a1c:	66 90                	xchg   ax,ax
+ 8048a1e:	66 90                	xchg   ax,ax
+ 8048a20:	30 e4                	xor    ah,ah
+ 8048a22:	31 c9                	xor    ecx,ecx
+ 8048a24:	31 d2                	xor    edx,edx
+ 8048a26:	31 f6                	xor    esi,esi
+ 8048a28:	c3                   	ret    
+ 8048a29:	80 fa 30             	cmp    dl,0x30
+ 8048a2c:	7d 04                	jge    8048a32 <__isoc99_scanf@plt+0x552>
+ 8048a2e:	31 c0                	xor    eax,eax
+ 8048a30:	eb 1f                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a32:	80 fa 39             	cmp    dl,0x39
+ 8048a35:	7e 02                	jle    8048a39 <__isoc99_scanf@plt+0x559>
+ 8048a37:	eb 05                	jmp    8048a3e <__isoc99_scanf@plt+0x55e>
+ 8048a39:	80 ea 30             	sub    dl,0x30
+ 8048a3c:	eb 13                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a3e:	80 fa 61             	cmp    dl,0x61
+ 8048a41:	7d 02                	jge    8048a45 <__isoc99_scanf@plt+0x565>
+ 8048a43:	eb 0c                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a45:	80 fa 66             	cmp    dl,0x66
+ 8048a48:	7e 04                	jle    8048a4e <__isoc99_scanf@plt+0x56e>
+ 8048a4a:	31 c0                	xor    eax,eax
+ 8048a4c:	eb 03                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a4e:	80 ea 57             	sub    dl,0x57
+ 8048a51:	c3                   	ret    
+ 8048a52:	5e                   	pop    esi
+ 8048a53:	9d                   	popf   
+ 8048a54:	75 03                	jne    8048a59 <__isoc99_scanf@plt+0x579>
+ 8048a56:	9c                   	pushf  
+ 8048a57:	56                   	push   esi
+ 8048a58:	c3                   	ret    
+ 8048a59:	31 c0                	xor    eax,eax
+ 8048a5b:	eb f9                	jmp    8048a56 <__isoc99_scanf@plt+0x576>
+ 8048a5d:	55                   	push   ebp
+ 8048a5e:	89 e5                	mov    ebp,esp
+ 8048a60:	31 c0                	xor    eax,eax
+ 8048a62:	40                   	inc    eax
+ 8048a63:	8b 5d 08             	mov    ebx,DWORD PTR [ebp+0x8]
+ 8048a66:	89 df                	mov    edi,ebx
+ 8048a68:	e8 b3 ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048a6d:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048a6f:	43                   	inc    ebx
+ 8048a70:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048a72:	43                   	inc    ebx
+ 8048a73:	e8 b1 ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048a78:	88 d1                	mov    cl,dl
+ 8048a7a:	88 f2                	mov    dl,dh
+ 8048a7c:	e8 a8 ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048a81:	00 d1                	add    cl,dl
+ 8048a83:	80 f9 1c             	cmp    cl,0x1c
+ 8048a86:	9c                   	pushf  
+ 8048a87:	e8 c6 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048a8c:	83 c4 04             	add    esp,0x4
+ 8048a8f:	80 fa 0f             	cmp    dl,0xf
+ 8048a92:	9c                   	pushf  
+ 8048a93:	e8 ba ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048a98:	83 c4 04             	add    esp,0x4
+ 8048a9b:	e8 80 ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048aa0:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048aa2:	43                   	inc    ebx
+ 8048aa3:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048aa5:	43                   	inc    ebx
+ 8048aa6:	e8 7e ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048aab:	88 d1                	mov    cl,dl
+ 8048aad:	88 f2                	mov    dl,dh
+ 8048aaf:	e8 75 ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048ab4:	00 d1                	add    cl,dl
+ 8048ab6:	80 f9 14             	cmp    cl,0x14
+ 8048ab9:	9c                   	pushf  
+ 8048aba:	e8 93 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048abf:	83 c4 04             	add    esp,0x4
+ 8048ac2:	80 fa 0d             	cmp    dl,0xd
+ 8048ac5:	9c                   	pushf  
+ 8048ac6:	e8 87 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048acb:	83 c4 04             	add    esp,0x4
+ 8048ace:	e8 4d ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048ad3:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048ad5:	c0 e2 04             	shl    dl,0x4
+ 8048ad8:	80 f2 f0             	xor    dl,0xf0
+ 8048adb:	80 fa f0             	cmp    dl,0xf0
+ 8048ade:	9c                   	pushf  
+ 8048adf:	e8 6e ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048ae4:	83 c4 04             	add    esp,0x4
+ 8048ae7:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048ae9:	c0 ea 04             	shr    dl,0x4
+ 8048aec:	80 f2 0f             	xor    dl,0xf
+ 8048aef:	80 fa 0c             	cmp    dl,0xc
+ 8048af2:	9c                   	pushf  
+ 8048af3:	e8 5a ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048af8:	83 c4 04             	add    esp,0x4
+ 8048afb:	43                   	inc    ebx
+ 8048afc:	e8 1f ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b01:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b03:	c0 e2 04             	shl    dl,0x4
+ 8048b06:	80 f2 f0             	xor    dl,0xf0
+ 8048b09:	80 fa 60             	cmp    dl,0x60
+ 8048b0c:	9c                   	pushf  
+ 8048b0d:	e8 40 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b12:	83 c4 04             	add    esp,0x4
+ 8048b15:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b17:	c0 ea 04             	shr    dl,0x4
+ 8048b1a:	80 f2 0f             	xor    dl,0xf
+ 8048b1d:	80 fa 0c             	cmp    dl,0xc
+ 8048b20:	9c                   	pushf  
+ 8048b21:	e8 2c ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b26:	83 c4 04             	add    esp,0x4
+ 8048b29:	43                   	inc    ebx
+ 8048b2a:	e8 f1 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b2f:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b31:	c0 e2 04             	shl    dl,0x4
+ 8048b34:	80 f2 f0             	xor    dl,0xf0
+ 8048b37:	80 fa 90             	cmp    dl,0x90
+ 8048b3a:	9c                   	pushf  
+ 8048b3b:	e8 12 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b40:	83 c4 04             	add    esp,0x4
+ 8048b43:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b45:	c0 ea 04             	shr    dl,0x4
+ 8048b48:	80 f2 0f             	xor    dl,0xf
+ 8048b4b:	80 fa 0c             	cmp    dl,0xc
+ 8048b4e:	9c                   	pushf  
+ 8048b4f:	e8 fe fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b54:	83 c4 04             	add    esp,0x4
+ 8048b57:	43                   	inc    ebx
+ 8048b58:	e8 c3 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b5d:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b5f:	43                   	inc    ebx
+ 8048b60:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048b62:	43                   	inc    ebx
+ 8048b63:	8a 0b                	mov    cl,BYTE PTR [ebx]
+ 8048b65:	43                   	inc    ebx
+ 8048b66:	00 cd                	add    ch,cl
+ 8048b68:	00 d5                	add    ch,dl
+ 8048b6a:	80 fd 6d             	cmp    ch,0x6d
+ 8048b6d:	9c                   	pushf  
+ 8048b6e:	e8 df fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b73:	83 c4 04             	add    esp,0x4
+ 8048b76:	30 ed                	xor    ch,ch
+ 8048b78:	00 cd                	add    ch,cl
+ 8048b7a:	00 f5                	add    ch,dh
+ 8048b7c:	80 fd 6d             	cmp    ch,0x6d
+ 8048b7f:	9c                   	pushf  
+ 8048b80:	e8 cd fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b85:	83 c4 04             	add    esp,0x4
+ 8048b88:	30 ed                	xor    ch,ch
+ 8048b8a:	00 d5                	add    ch,dl
+ 8048b8c:	00 f5                	add    ch,dh
+ 8048b8e:	80 fd 6a             	cmp    ch,0x6a
+ 8048b91:	9c                   	pushf  
+ 8048b92:	e8 bb fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b97:	83 c4 04             	add    esp,0x4
+ 8048b9a:	e8 81 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b9f:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048ba1:	c0 e2 04             	shl    dl,0x4
+ 8048ba4:	80 f2 f0             	xor    dl,0xf0
+ 8048ba7:	80 fa 60             	cmp    dl,0x60
+ 8048baa:	9c                   	pushf  
+ 8048bab:	e8 a2 fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bb0:	83 c4 04             	add    esp,0x4
+ 8048bb3:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048bb5:	c0 ea 04             	shr    dl,0x4
+ 8048bb8:	80 f2 0f             	xor    dl,0xf
+ 8048bbb:	80 fa 0c             	cmp    dl,0xc
+ 8048bbe:	9c                   	pushf  
+ 8048bbf:	e8 8e fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bc4:	83 c4 04             	add    esp,0x4
+ 8048bc7:	43                   	inc    ebx
+ 8048bc8:	e8 53 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048bcd:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048bcf:	43                   	inc    ebx
+ 8048bd0:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048bd2:	43                   	inc    ebx
+ 8048bd3:	e8 51 fe ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048bd8:	88 d1                	mov    cl,dl
+ 8048bda:	88 f2                	mov    dl,dh
+ 8048bdc:	e8 48 fe ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048be1:	00 d1                	add    cl,dl
+ 8048be3:	80 f9 07             	cmp    cl,0x7
+ 8048be6:	9c                   	pushf  
+ 8048be7:	e8 66 fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bec:	83 c4 04             	add    esp,0x4
+ 8048bef:	80 fa 03             	cmp    dl,0x3
+ 8048bf2:	9c                   	pushf  
+ 8048bf3:	e8 5a fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bf8:	83 c4 04             	add    esp,0x4
+ 8048bfb:	e8 20 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048c00:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048c02:	c0 e2 04             	shl    dl,0x4
+ 8048c05:	80 f2 f0             	xor    dl,0xf0
+ 8048c08:	80 fa c0             	cmp    dl,0xc0
+ 8048c0b:	9c                   	pushf  
+ 8048c0c:	e8 41 fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c11:	83 c4 04             	add    esp,0x4
+ 8048c14:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048c16:	c0 ea 04             	shr    dl,0x4
+ 8048c19:	80 f2 0f             	xor    dl,0xf
+ 8048c1c:	80 fa 0c             	cmp    dl,0xc
+ 8048c1f:	9c                   	pushf  
+ 8048c20:	e8 2d fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c25:	83 c4 04             	add    esp,0x4
+ 8048c28:	43                   	inc    ebx
+ 8048c29:	e8 f2 fd ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048c2e:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048c30:	43                   	inc    ebx
+ 8048c31:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048c33:	43                   	inc    ebx
+ 8048c34:	8a 0b                	mov    cl,BYTE PTR [ebx]
+ 8048c36:	43                   	inc    ebx
+ 8048c37:	00 cd                	add    ch,cl
+ 8048c39:	00 d5                	add    ch,dl
+ 8048c3b:	80 fd 98             	cmp    ch,0x98
+ 8048c3e:	9c                   	pushf  
+ 8048c3f:	e8 0e fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c44:	83 c4 04             	add    esp,0x4
+ 8048c47:	30 ed                	xor    ch,ch
+ 8048c49:	00 cd                	add    ch,cl
+ 8048c4b:	00 f5                	add    ch,dh
+ 8048c4d:	80 fd cb             	cmp    ch,0xcb
+ 8048c50:	9c                   	pushf  
+ 8048c51:	e8 fc fd ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c56:	83 c4 04             	add    esp,0x4
+ 8048c59:	30 ed                	xor    ch,ch
+ 8048c5b:	00 d5                	add    ch,dl
+ 8048c5d:	00 f5                	add    ch,dh
+ 8048c5f:	80 fd 99             	cmp    ch,0x99
+ 8048c62:	9c                   	pushf  
+ 8048c63:	e8 ea fd ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c68:	83 c4 04             	add    esp,0x4
+ 8048c6b:	e8 b0 fd ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048c70:	b9 11 00 00 00       	mov    ecx,0x11
+ 8048c75:	89 fb                	mov    ebx,edi
+ 8048c77:	8a 54 0b ff          	mov    dl,BYTE PTR [ebx+ecx*1-0x1]
+ 8048c7b:	01 d6                	add    esi,edx
+ 8048c7d:	e2 f8                	loop   8048c77 <__isoc99_scanf@plt+0x797>
+ 8048c7f:	81 fe 77 04 00 00    	cmp    esi,0x477
+ 8048c85:	9c                   	pushf  
+ 8048c86:	e8 c7 fd ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c8b:	83 c4 04             	add    esp,0x4
+ 8048c8e:	c9                   	leave  
+ 8048c8f:	c3                   	ret    
+ 8048c90:	55                   	push   ebp
+ 8048c91:	57                   	push   edi
+ 8048c92:	31 ff                	xor    edi,edi
+ 8048c94:	56                   	push   esi
+ 8048c95:	53                   	push   ebx
+ 8048c96:	e8 85 f8 ff ff       	call   8048520 <__isoc99_scanf@plt+0x40>
+ 8048c9b:	81 c3 4d 15 00 00    	add    ebx,0x154d
+ 8048ca1:	83 ec 1c             	sub    esp,0x1c
+ 8048ca4:	8b 6c 24 30          	mov    ebp,DWORD PTR [esp+0x30]
+ 8048ca8:	8d b3 0c ff ff ff    	lea    esi,[ebx-0xf4]
+ 8048cae:	e8 51 f7 ff ff       	call   8048404 <setbuf@plt-0x3c>
+ 8048cb3:	8d 83 08 ff ff ff    	lea    eax,[ebx-0xf8]
+ 8048cb9:	29 c6                	sub    esi,eax
+ 8048cbb:	c1 fe 02             	sar    esi,0x2
+ 8048cbe:	85 f6                	test   esi,esi
+ 8048cc0:	74 27                	je     8048ce9 <__isoc99_scanf@plt+0x809>
+ 8048cc2:	8d b6 00 00 00 00    	lea    esi,[esi+0x0]
+ 8048cc8:	8b 44 24 38          	mov    eax,DWORD PTR [esp+0x38]
+ 8048ccc:	89 2c 24             	mov    DWORD PTR [esp],ebp
+ 8048ccf:	89 44 24 08          	mov    DWORD PTR [esp+0x8],eax
+ 8048cd3:	8b 44 24 34          	mov    eax,DWORD PTR [esp+0x34]
+ 8048cd7:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 8048cdb:	ff 94 bb 08 ff ff ff 	call   DWORD PTR [ebx+edi*4-0xf8]
+ 8048ce2:	83 c7 01             	add    edi,0x1
+ 8048ce5:	39 f7                	cmp    edi,esi
+ 8048ce7:	75 df                	jne    8048cc8 <__isoc99_scanf@plt+0x7e8>
+ 8048ce9:	83 c4 1c             	add    esp,0x1c
+ 8048cec:	5b                   	pop    ebx
+ 8048ced:	5e                   	pop    esi
+ 8048cee:	5f                   	pop    edi
+ 8048cef:	5d                   	pop    ebp
+ 8048cf0:	c3                   	ret    
+ 8048cf1:	eb 0d                	jmp    8048d00 <__isoc99_scanf@plt+0x820>
+ 8048cf3:	90                   	nop
+ 8048cf4:	90                   	nop
+ 8048cf5:	90                   	nop
+ 8048cf6:	90                   	nop
+ 8048cf7:	90                   	nop
+ 8048cf8:	90                   	nop
+ 8048cf9:	90                   	nop
+ 8048cfa:	90                   	nop
+ 8048cfb:	90                   	nop
+ 8048cfc:	90                   	nop
+ 8048cfd:	90                   	nop
+ 8048cfe:	90                   	nop
+ 8048cff:	90                   	nop
+ 8048d00:	f3 c3                	repz ret 
+
+Disassembly of section .fini:
+
+08048d04 <.fini>:
+ 8048d04:	53                   	push   ebx
+ 8048d05:	83 ec 08             	sub    esp,0x8
+ 8048d08:	e8 13 f8 ff ff       	call   8048520 <__isoc99_scanf@plt+0x40>
+ 8048d0d:	81 c3 db 14 00 00    	add    ebx,0x14db
+ 8048d13:	83 c4 08             	add    esp,0x8
+ 8048d16:	5b                   	pop    ebx
+ 8048d17:	c3                   	ret    

@@ -1,0 +1,20 @@
+ 8048a20:	30 e4                	xor    ah,ah
+ 8048a22:	31 c9                	xor    ecx,ecx
+ 8048a24:	31 d2                	xor    edx,edx
+ 8048a26:	31 f6                	xor    esi,esi
+ 8048a28:	c3                   	ret    
+
+ functie fara parametrii
+
+low-level
+
+seteaza 0 ah, ecx, edx, si esi
+
+
+high-level
+seteaza pe 0 niste registrii (nu prea e high level ce face)
+
+cum as numi-o
+
+void set0_ah_ecx_edx_esi()
+

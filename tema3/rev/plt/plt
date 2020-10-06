@@ -1,0 +1,62 @@
+Disassembly of section .plt:
+
+08048430 <setbuf@plt-0x10>:
+ 8048430:	ff 35 ec a1 04 08    	push   DWORD PTR ds:0x804a1ec
+ 8048436:	ff 25 f0 a1 04 08    	jmp    DWORD PTR ds:0x804a1f0
+ 804843c:	00 00                	add    BYTE PTR [eax],al
+	...
+
+08048440 <setbuf@plt>:
+ 8048440:	ff 25 f4 a1 04 08    	jmp    DWORD PTR ds:0x804a1f4
+ 8048446:	68 00 00 00 00       	push   0x0
+ 804844b:	e9 e0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048450 <strstr@plt>:
+ 8048450:	ff 25 f8 a1 04 08    	jmp    DWORD PTR ds:0x804a1f8
+ 8048456:	68 08 00 00 00       	push   0x8
+ 804845b:	e9 d0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048460 <mprotect@plt>:
+ 8048460:	ff 25 fc a1 04 08    	jmp    DWORD PTR ds:0x804a1fc
+ 8048466:	68 10 00 00 00       	push   0x10
+ 804846b:	e9 c0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048470 <read@plt>:
+ 8048470:	ff 25 00 a2 04 08    	jmp    DWORD PTR ds:0x804a200
+ 8048476:	68 18 00 00 00       	push   0x18
+ 804847b:	e9 b0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048480 <printf@plt>:
+ 8048480:	ff 25 04 a2 04 08    	jmp    DWORD PTR ds:0x804a204
+ 8048486:	68 20 00 00 00       	push   0x20
+ 804848b:	e9 a0 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+08048490 <puts@plt>:
+ 8048490:	ff 25 08 a2 04 08    	jmp    DWORD PTR ds:0x804a208
+ 8048496:	68 28 00 00 00       	push   0x28
+ 804849b:	e9 90 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484a0 <__gmon_start__@plt>:
+ 80484a0:	ff 25 0c a2 04 08    	jmp    DWORD PTR ds:0x804a20c
+ 80484a6:	68 30 00 00 00       	push   0x30
+ 80484ab:	e9 80 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484b0 <exit@plt>:
+ 80484b0:	ff 25 10 a2 04 08    	jmp    DWORD PTR ds:0x804a210
+ 80484b6:	68 38 00 00 00       	push   0x38
+ 80484bb:	e9 70 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484c0 <mmap@plt>:
+ 80484c0:	ff 25 14 a2 04 08    	jmp    DWORD PTR ds:0x804a214
+ 80484c6:	68 40 00 00 00       	push   0x40
+ 80484cb:	e9 60 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484d0 <__libc_start_main@plt>:
+ 80484d0:	ff 25 18 a2 04 08    	jmp    DWORD PTR ds:0x804a218
+ 80484d6:	68 48 00 00 00       	push   0x48
+ 80484db:	e9 50 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>
+
+080484e0 <__isoc99_scanf@plt>:
+ 80484e0:	ff 25 1c a2 04 08    	jmp    DWORD PTR ds:0x804a21c
+ 80484e6:	68 50 00 00 00       	push   0x50
+ 80484eb:	e9 40 ff ff ff       	jmp    8048430 <setbuf@plt-0x10>

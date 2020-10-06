@@ -1,0 +1,69 @@
+  
+ 804893a:	55                   	push   ebp
+ 804893b:	89 e5                	mov    ebp,esp
+ 804893d:	83 ec 04             	sub    esp,0x4
+ 8048940:	8d 45 fc             	lea    eax,[ebp-0x4]
+ 8048943:	50                   	push   eax
+ 8048944:	68 b6 8d 04 08       	push   0x8048db6
+ 8048949:	e8 92 fb ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 804894e:	83 c4 08             	add    esp,0x8
+ 8048951:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048954:	83 f8 05             	cmp    eax,0x5
+ 8048957:	77 40                	ja     8048999 <__isoc99_scanf@plt+0x4b9>
+ 8048959:	8b 04 85 d0 8d 04 08 	mov    eax,DWORD PTR [eax*4+0x8048dd0]
+ 8048960:	ff e0                	jmp    eax
+ 8048962:	e8 12 fd ff ff       	call   8048679 <__isoc99_scanf@plt+0x199>
+ 8048967:	eb 3e                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048969:	e8 7c fd ff ff       	call   80486ea <__isoc99_scanf@plt+0x20a>
+ 804896e:	eb 37                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048970:	e8 9b fd ff ff       	call   8048710 <__isoc99_scanf@plt+0x230>
+ 8048975:	eb 30                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048977:	e8 ba fd ff ff       	call   8048736 <__isoc99_scanf@plt+0x256>
+ 804897c:	eb 29                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 804897e:	e8 cb fd ff ff       	call   804874e <__isoc99_scanf@plt+0x26e>
+ 8048983:	eb 22                	jmp    80489a7 <__isoc99_scanf@plt+0x4c7>
+ 8048985:	68 ba 8d 04 08       	push   0x8048dba
+ 804898a:	e8 01 fb ff ff       	call   8048490 <puts@plt>
+ 804898f:	83 c4 04             	add    esp,0x4
+ 8048992:	6a 01                	push   0x1
+ 8048994:	e8 17 fb ff ff       	call   80484b0 <exit@plt>
+ 8048999:	68 bf 8d 04 08       	push   0x8048dbf
+ 804899e:	e8 ed fa ff ff       	call   8048490 <puts@plt>
+ 80489a3:	83 c4 04             	add    esp,0x4
+ 80489a6:	90                   	nop
+ 80489a7:	c9                   	leave  
+ 80489a8:	c3                   	ret  
+
+low level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se rezerva 4 octeti pe stiva (sa numim aceasta variabila n)
+se muta adresa rezervata in eax
+se puseaza eax
+se pusheaza adresa stringului "%1d" din sectiunea de date
+se apeleaza scanf("%1d", &n)
+se elibereaza stiva de parametrii
+se muta n in eax
+se compara eax cu 5, daca este mai mare
+se pusheaza "Unkiwn option"
+si se cheama puts("Unkown option.")
+se elibereaza stiva de parametru
+se restituie stiva
+se intoarce
+
+altfel se muta in eax eax*4 + jum_tavle_848dd0
+si se sare la eax
+// acest mecanism reprezinta un switch
+apeleaza functia corespunzatoare (pentru optiunile 0-4)
+restituie stiva
+return
+pentru optiunea 5
+pusheaza "Bye."
+cheama puts("Bye.")
+elibereaza stiva de parametru
+pusheaza 1
+cheama exit(1) // terminare cu EXIT_FAILURE :<
+
+cum as numi functia
+void menu()
+

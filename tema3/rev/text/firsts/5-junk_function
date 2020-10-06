@@ -1,0 +1,79 @@
+ 
+ 80485c0:	b8 f8 a0 04 08       	mov    eax,0x804a0f8
+ 80485c5:	8b 10                	mov    edx,DWORD PTR [eax]
+ 80485c7:	85 d2                	test   edx,edx
+ 80485c9:	75 05                	jne    80485d0 <__isoc99_scanf@plt+0xf0>
+ 80485cb:	eb 93                	jmp    8048560 <__isoc99_scanf@plt+0x80>
+ 80485cd:	8d 76 00             	lea    esi,[esi+0x0]
+ 80485d0:	ba 00 00 00 00       	mov    edx,0x0
+ 80485d5:	85 d2                	test   edx,edx
+ 80485d7:	74 f2                	je     80485cb <__isoc99_scanf@plt+0xeb>
+ 80485d9:	55                   	push   ebp
+ 80485da:	89 e5                	mov    ebp,esp
+ 80485dc:	83 ec 14             	sub    esp,0x14
+ 80485df:	50                   	push   eax
+ 80485e0:	ff d2                	call   edx
+ 80485e2:	83 c4 10             	add    esp,0x10
+ 80485e5:	c9                   	leave  
+ 80485e6:	e9 75 ff ff ff       	jmp    8048560 <__isoc99_scanf@plt+0x80>
+
+
+
+
+ 804855c:	8d 74 26 00          	lea    esi,[esi+eiz*1+0x0]
+
+ 8048560:	b8 fc a3 04 08       	mov    eax,0x804a3fc
+ 8048565:	2d fc a3 04 08       	sub    eax,0x804a3fc
+ 804856a:	c1 f8 02             	sar    eax,0x2
+ 804856d:	89 c2                	mov    edx,eax
+ 804856f:	c1 ea 1f             	shr    edx,0x1f
+ 8048572:	01 d0                	add    eax,edx
+ 8048574:	d1 f8                	sar    eax,1
+ 8048576:	74 1b                	je     8048593 <__isoc99_scanf@plt+0xb3>
+ 8048578:	ba 00 00 00 00       	mov    edx,0x0
+ 804857d:	85 d2                	test   edx,edx
+ 804857f:	74 12                	je     8048593 <__isoc99_scanf@plt+0xb3>
+
+ 8048581:	55                   	push   ebp
+ 8048582:	89 e5                	mov    ebp,esp
+ 8048584:	83 ec 10             	sub    esp,0x10
+ 8048587:	50                   	push   eax
+ 8048588:	68 fc a3 04 08       	push   0x804a3fc
+ 804858d:	ff d2                	call   edx
+ 804858f:	83 c4 10             	add    esp,0x10
+ 8048592:	c9                   	leave 
+ 8048593:	f3 c3                	repz ret 
+
+low-level:
+muta in eax o variabila globala, o sa o numesc void* self_ptr // variabila initializata cu 0
+pune in edx adresa spre care indica self_ptr
+verifica daca eax == edx // deci daca self_ptr indica catre el insusi
+daca nu indica
+	muta in edx 0
+	testeaza daca edx e 0
+	daca nu ar fi s-ar executa urmatoarea sectiune de cod care ar da segfault { 
+		salvează vechiului ebp pe stivă
+		se actualizează valoarea la vârful curent al stivei.
+		se rezerva 20 de octeti pe stiva
+		se pusheaza eax // self_ptr
+		se cheama edx(self_ptr) // edx e inca 0
+		se sterg 16 octeti de pe stiva
+		se restaureaza stiva
+
+se fac niste operatii in urma carora eax si edx ddevin 0
+apoi pt ca si zf e activ se sare peste
+	muta 0 in edx
+	daca edx e 0 sari peste
+		functie care ar da crash pt ca cheama 0(o_adresa_din_code, 0)
+apoi se da return
+
+
+
+high-level:
+	se verifica daca o un pointer global pointeaza catre el insusi si dupa
+edx si eax se fac 0 si in toata functia se sare peste niste cod ce ar crapa
+
+cum as numi-o
+void junk_function()
+
+

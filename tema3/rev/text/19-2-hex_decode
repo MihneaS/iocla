@@ -1,0 +1,56 @@
+ 8048a29:	80 fa 30             	cmp    dl,0x30
+ 8048a2c:	7d 04                	jge    8048a32 <__isoc99_scanf@plt+0x552>
+ 8048a2e:	31 c0                	xor    eax,eax
+ 8048a30:	eb 1f                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a32:	80 fa 39             	cmp    dl,0x39
+ 8048a35:	7e 02                	jle    8048a39 <__isoc99_scanf@plt+0x559>
+ 8048a37:	eb 05                	jmp    8048a3e <__isoc99_scanf@plt+0x55e>
+ 8048a39:	80 ea 30             	sub    dl,0x30
+ 8048a3c:	eb 13                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a3e:	80 fa 61             	cmp    dl,0x61
+ 8048a41:	7d 02                	jge    8048a45 <__isoc99_scanf@plt+0x565>
+ 8048a43:	eb 0c                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a45:	80 fa 66             	cmp    dl,0x66
+ 8048a48:	7e 04                	jle    8048a4e <__isoc99_scanf@plt+0x56e>
+ 8048a4a:	31 c0                	xor    eax,eax
+ 8048a4c:	eb 03                	jmp    8048a51 <__isoc99_scanf@plt+0x571>
+ 8048a4e:	80 ea 57             	sub    dl,0x57
+ 8048a51:	c3                   	ret
+
+low level
+
+se compara dl cu 48
+
+daca e mai mic eax se face 0 apoi return
+
+altfel se compara cu 61
+daca e mai mic sau egal, se scade 42 din dl si return
+
+altfel se comparaa cu 97 ('a')
+daca e mai mic return
+altfel se compara cu 102 ('f')
+daca e mai mare eax e pus 0 si return
+altfel se scade din dl 87 return
+
+
+high level
+
+functia foloseste dl ca parametru de intrare si dl si eax ca valoare de return
+
+functia verifica caracterul stocat in dl contra mai multor valori, daca nu sunt
+-128 - 47 return 0
+48 - 57 , dl -= 47 (deci la urmatorul apel return 0) return eax
+58 - 96 ('a'-1) return eax
+97('a') - 102('f') dl-87 (deci la urmatorul apel return 0) return eax
+103('g') - 127 return 0
+
+ca urmare singurul interval intr-e care functia nu returneaza daca e apelata de 2 ori (asa cum este) este 58-96
+
+cum as numi functia
+
+int check_dl(char dl) {
+	...
+}
+
+
+

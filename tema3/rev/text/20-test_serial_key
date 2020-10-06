@@ -1,0 +1,379 @@
+   
+
+ 
+functia e chemata de aici
+
+ 8048a5d:	55                   	push   ebp
+ 8048a5e:	89 e5                	mov    ebp,esp
+ 8048a60:	31 c0                	xor    eax,eax
+ 8048a62:	40                   	inc    eax
+ 8048a63:	8b 5d 08             	mov    ebx,DWORD PTR [ebp+0x8]
+ 8048a66:	89 df                	mov    edi,ebx
+ 8048a68:	e8 b3 ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048a6d:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048a6f:	43                   	inc    ebx
+ 8048a70:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048a72:	43                   	inc    ebx
+ 8048a73:	e8 b1 ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048a78:	88 d1                	mov    cl,dl
+ 8048a7a:	88 f2                	mov    dl,dh
+ 8048a7c:	e8 a8 ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048a81:	00 d1                	add    cl,dl
+ 8048a83:	80 f9 1c             	cmp    cl,0x1c
+ 8048a86:	9c                   	pushf  
+ 8048a87:	e8 c6 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048a8c:	83 c4 04             	add    esp,0x4
+ 8048a8f:	80 fa 0f             	cmp    dl,0xf
+ 8048a92:	9c                   	pushf  
+ 8048a93:	e8 ba ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048a98:	83 c4 04             	add    esp,0x4
+ 8048a9b:	e8 80 ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048aa0:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048aa2:	43                   	inc    ebx
+ 8048aa3:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048aa5:	43                   	inc    ebx
+ 8048aa6:	e8 7e ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048aab:	88 d1                	mov    cl,dl
+ 8048aad:	88 f2                	mov    dl,dh
+ 8048aaf:	e8 75 ff ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048ab4:	00 d1                	add    cl,dl
+ 8048ab6:	80 f9 14             	cmp    cl,0x14
+ 8048ab9:	9c                   	pushf  
+ 8048aba:	e8 93 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048abf:	83 c4 04             	add    esp,0x4
+ 8048ac2:	80 fa 0d             	cmp    dl,0xd
+ 8048ac5:	9c                   	pushf  
+ 8048ac6:	e8 87 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048acb:	83 c4 04             	add    esp,0x4
+ 8048ace:	e8 4d ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048ad3:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048ad5:	c0 e2 04             	shl    dl,0x4
+ 8048ad8:	80 f2 f0             	xor    dl,0xf0
+ 8048adb:	80 fa f0             	cmp    dl,0xf0
+ 8048ade:	9c                   	pushf  
+ 8048adf:	e8 6e ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048ae4:	83 c4 04             	add    esp,0x4
+ 8048ae7:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048ae9:	c0 ea 04             	shr    dl,0x4
+ 8048aec:	80 f2 0f             	xor    dl,0xf
+ 8048aef:	80 fa 0c             	cmp    dl,0xc
+ 8048af2:	9c                   	pushf  
+ 8048af3:	e8 5a ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048af8:	83 c4 04             	add    esp,0x4
+ 8048afb:	43                   	inc    ebx
+ 8048afc:	e8 1f ff ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b01:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b03:	c0 e2 04             	shl    dl,0x4
+ 8048b06:	80 f2 f0             	xor    dl,0xf0
+ 8048b09:	80 fa 60             	cmp    dl,0x60
+ 8048b0c:	9c                   	pushf  
+ 8048b0d:	e8 40 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b12:	83 c4 04             	add    esp,0x4
+ 8048b15:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b17:	c0 ea 04             	shr    dl,0x4
+ 8048b1a:	80 f2 0f             	xor    dl,0xf
+ 8048b1d:	80 fa 0c             	cmp    dl,0xc
+ 8048b20:	9c                   	pushf  
+ 8048b21:	e8 2c ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b26:	83 c4 04             	add    esp,0x4
+ 8048b29:	43                   	inc    ebx
+ 8048b2a:	e8 f1 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b2f:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b31:	c0 e2 04             	shl    dl,0x4
+ 8048b34:	80 f2 f0             	xor    dl,0xf0
+ 8048b37:	80 fa 90             	cmp    dl,0x90
+ 8048b3a:	9c                   	pushf  
+ 8048b3b:	e8 12 ff ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b40:	83 c4 04             	add    esp,0x4
+ 8048b43:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b45:	c0 ea 04             	shr    dl,0x4
+ 8048b48:	80 f2 0f             	xor    dl,0xf
+ 8048b4b:	80 fa 0c             	cmp    dl,0xc
+ 8048b4e:	9c                   	pushf  
+ 8048b4f:	e8 fe fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b54:	83 c4 04             	add    esp,0x4
+ 8048b57:	43                   	inc    ebx
+ 8048b58:	e8 c3 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b5d:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048b5f:	43                   	inc    ebx
+ 8048b60:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048b62:	43                   	inc    ebx
+ 8048b63:	8a 0b                	mov    cl,BYTE PTR [ebx]
+ 8048b65:	43                   	inc    ebx
+ 8048b66:	00 cd                	add    ch,cl
+ 8048b68:	00 d5                	add    ch,dl
+ 8048b6a:	80 fd 6d             	cmp    ch,0x6d
+ 8048b6d:	9c                   	pushf  
+ 8048b6e:	e8 df fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b73:	83 c4 04             	add    esp,0x4
+ 8048b76:	30 ed                	xor    ch,ch
+ 8048b78:	00 cd                	add    ch,cl
+ 8048b7a:	00 f5                	add    ch,dh
+ 8048b7c:	80 fd 6d             	cmp    ch,0x6d
+ 8048b7f:	9c                   	pushf  
+ 8048b80:	e8 cd fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b85:	83 c4 04             	add    esp,0x4
+ 8048b88:	30 ed                	xor    ch,ch
+ 8048b8a:	00 d5                	add    ch,dl
+ 8048b8c:	00 f5                	add    ch,dh
+ 8048b8e:	80 fd 6a             	cmp    ch,0x6a
+ 8048b91:	9c                   	pushf  
+ 8048b92:	e8 bb fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048b97:	83 c4 04             	add    esp,0x4
+ 8048b9a:	e8 81 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048b9f:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048ba1:	c0 e2 04             	shl    dl,0x4
+ 8048ba4:	80 f2 f0             	xor    dl,0xf0
+ 8048ba7:	80 fa 60             	cmp    dl,0x60
+ 8048baa:	9c                   	pushf  
+ 8048bab:	e8 a2 fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bb0:	83 c4 04             	add    esp,0x4
+ 8048bb3:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048bb5:	c0 ea 04             	shr    dl,0x4
+ 8048bb8:	80 f2 0f             	xor    dl,0xf
+ 8048bbb:	80 fa 0c             	cmp    dl,0xc
+ 8048bbe:	9c                   	pushf  
+ 8048bbf:	e8 8e fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bc4:	83 c4 04             	add    esp,0x4
+ 8048bc7:	43                   	inc    ebx
+ 8048bc8:	e8 53 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048bcd:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048bcf:	43                   	inc    ebx
+ 8048bd0:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048bd2:	43                   	inc    ebx
+ 8048bd3:	e8 51 fe ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048bd8:	88 d1                	mov    cl,dl
+ 8048bda:	88 f2                	mov    dl,dh
+ 8048bdc:	e8 48 fe ff ff       	call   8048a29 <__isoc99_scanf@plt+0x549>
+ 8048be1:	00 d1                	add    cl,dl
+ 8048be3:	80 f9 07             	cmp    cl,0x7
+ 8048be6:	9c                   	pushf  
+ 8048be7:	e8 66 fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bec:	83 c4 04             	add    esp,0x4
+ 8048bef:	80 fa 03             	cmp    dl,0x3
+ 8048bf2:	9c                   	pushf  
+ 8048bf3:	e8 5a fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048bf8:	83 c4 04             	add    esp,0x4
+ 8048bfb:	e8 20 fe ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048c00:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048c02:	c0 e2 04             	shl    dl,0x4
+ 8048c05:	80 f2 f0             	xor    dl,0xf0
+ 8048c08:	80 fa c0             	cmp    dl,0xc0
+ 8048c0b:	9c                   	pushf  
+ 8048c0c:	e8 41 fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c11:	83 c4 04             	add    esp,0x4
+ 8048c14:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048c16:	c0 ea 04             	shr    dl,0x4
+ 8048c19:	80 f2 0f             	xor    dl,0xf
+ 8048c1c:	80 fa 0c             	cmp    dl,0xc
+ 8048c1f:	9c                   	pushf  
+ 8048c20:	e8 2d fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c25:	83 c4 04             	add    esp,0x4
+ 8048c28:	43                   	inc    ebx
+ 8048c29:	e8 f2 fd ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048c2e:	8a 13                	mov    dl,BYTE PTR [ebx]
+ 8048c30:	43                   	inc    ebx
+ 8048c31:	8a 33                	mov    dh,BYTE PTR [ebx]
+ 8048c33:	43                   	inc    ebx
+ 8048c34:	8a 0b                	mov    cl,BYTE PTR [ebx]
+ 8048c36:	43                   	inc    ebx
+ 8048c37:	00 cd                	add    ch,cl
+ 8048c39:	00 d5                	add    ch,dl
+ 8048c3b:	80 fd 98             	cmp    ch,0x98
+ 8048c3e:	9c                   	pushf  
+ 8048c3f:	e8 0e fe ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c44:	83 c4 04             	add    esp,0x4
+ 8048c47:	30 ed                	xor    ch,ch
+ 8048c49:	00 cd                	add    ch,cl
+ 8048c4b:	00 f5                	add    ch,dh
+ 8048c4d:	80 fd cb             	cmp    ch,0xcb
+ 8048c50:	9c                   	pushf  
+ 8048c51:	e8 fc fd ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c56:	83 c4 04             	add    esp,0x4
+ 8048c59:	30 ed                	xor    ch,ch
+ 8048c5b:	00 d5                	add    ch,dl
+ 8048c5d:	00 f5                	add    ch,dh
+ 8048c5f:	80 fd 99             	cmp    ch,0x99
+ 8048c62:	9c                   	pushf  
+ 8048c63:	e8 ea fd ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c68:	83 c4 04             	add    esp,0x4
+ 8048c6b:	e8 b0 fd ff ff       	call   8048a20 <__isoc99_scanf@plt+0x540>
+ 8048c70:	b9 11 00 00 00       	mov    ecx,0x11
+ 8048c75:	89 fb                	mov    ebx,edi
+ 8048c77:	8a 54 0b ff          	mov    dl,BYTE PTR [ebx+ecx*1-0x1]
+ 8048c7b:	01 d6                	add    esi,edx
+ 8048c7d:	e2 f8                	loop   8048c77 <__isoc99_scanf@plt+0x797>
+ 8048c7f:	81 fe 77 04 00 00    	cmp    esi,0x477
+ 8048c85:	9c                   	pushf  
+ 8048c86:	e8 c7 fd ff ff       	call   8048a52 <__isoc99_scanf@plt+0x572>
+ 8048c8b:	83 c4 04             	add    esp,0x4
+ 8048c8e:	c9                   	leave  
+ 8048c8f:	c3                   	ret  
+
+
+low-level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se initializeaza eax cu 0
+se incrementeaza eax
+se muta in ebx p1 (este adresa unui string)
+se muta in edi ebx
+se cheama 8048a20/set0_ah_ecx_edx_esi
+muta in dl primul octet al sirului dat ca parametru
+adauga 1 in ebx
+muta in dh al doilea octet al sirului dat ca parametru
+adauga 1 in ebx
+apeleaza check_dl
+salveaza dl in cl
+muta dh in dl
+apeleaza check_dl
+aduna peste cl dl
+compara cl cu 28
+salveaza comparatia
+apeleaza check_if_equal
+elibereaza stiva de parametru (EFLAGS)
+compara dl cu 15
+apeleaza check if equal
+sterge parametrul (EFLAGS) de pe stiva
+/* in momentul de fat astim ca dupa check dl peste s[1] si s[0]
+s[1] == 15
+s[1] + s[0] == 28, deci s[0] == 13
+deci inainte de check dl
+s[0] == 100
+s[1] == 102 ('f')
+*/
+
+analog cu mai sus dar acum se compara cl cu 20 si dl cu 13
+/*
+dupa check_dl
+s[3] == 13
+s[2] + s[3] == 20 => s[2] == 7
+deci inainte de check_dl
+s[2] == '7'
+s[3] == 100('d')
+*/
+
+se apeleaza set0_ah_ecx_edx_esi
+se muta in dl s[4]
+se shifteaza dl 4 biti la stanga
+se xoreaza dl cu 240
+se compara dl cu 240
+se pusheaza EFLAGS
+se apeleaza check_if_equal
+se sterge EFLAGS de pe stiva
+/*
+ca sa treaca acest test cei mai la dreapta 4 biti din dl trebuie sa fie 0
+*/
+se muta in dl s[4]
+se shifteaza dl logic la dreapta
+se xoreaxa dl cu 15
+se compara dl cu 12
+se pusheaza EFLAGS
+se apeleaza check_if_equal
+se sterge EFLAGS de pe stiva
+ebx++
+/*
+ca sa treaca acest test cei maila stanga 4 biti trebuie sa fie b0011 adica 3
+deci
+s[4] == 00110000 == 48
+*/
+analog, dar prima oara se compara cu 96 deci
+/*
+cei mai din dreapta biti din s[5] sunt 1001 adica 9
+cei mai la stanga 4 biti sunt tot b0011
+deci s[5] == 00111001 == 57
+*/
+analog, dar prima oara se compara cu 144 deci
+/*
+cei mai din dreapta biti din s[5] sunt 0110 adica 9
+cei mai la stanga 4 biti sunt tot b1001
+deci s[6] == 00110110 == 54
+*/
+apeleaza set0_ah_ecx_edx_esi
+muta in dl s[7]
+ebx++
+muta in dh s[8]
+ebx++
+muta in cl s[9]
+ebx++
+aduna in ch cl si dl
+compara ch cu 109
+push EFLAGS
+cheama check_if_equal
+stergeEFLAGS de pe stack
+reseta ch
+analog ca mai sus dar cu dh si cl
+analog ca mai sus dar cu dh si dl si compara cu 106
+/*
+s[7] + s[9] == 109
+s[8] + s[9] == 109
+s[7] + s[8] == 106
+2(s[7]+s[8]+s[9]) == 324
+s[7]+s[8]+s[9] == 162
+s[7] = 53
+s[8] = 53
+s[9] = 56
+*/
+
+analog portiunea cu xorare si shiftare dar se compara cu 96
+/*
+deci s[10] == 57
+*/
+
+analog portiunea cu check_dl dar cl se compara cu 7
+si dl se compara cu 3
+/*
+dupa check_dl
+s[11] + s[12] == 7
+s[12] == 3
+s[11] == 4
+inainte de check_dl
+s[11] == 52
+s[12] == 51
+*/
+
+analog portiunea cu xor si shiftare dar se verifica cu 192 deci
+/*
+cei mai la dreapta 4 biti din s[13] sunt 0011
+s[13] == 00110011 == 51
+*/
+
+analog cu portiunea fara xor si fara check_dl
+dar prima oara se compara cu 152
+a doua oara cu 203
+a treia oara cu 153
+/* s[14] s[15] s[16]
+s[14] + s[16] == 152
+s[15] + s[16] == 203
+s[14] + s[15] == 153
+s[14]+s[15]+s[16] == 254
+s[14] == 51
+s[15] == 102
+s[16] == 101
+*/
+cheama set0_ah_ecx_edx_esi
+initializeaza ecx cu 17
+reintializeaza ebx cu adresa s[0]
+executa
+	muta s[ecx-1] in dl
+	aduna in esi dl
+	ecx--
+cat timp ecx!=0 
+compara esi(suma) cu 1143
+puseaza EGALGS0x8048a52
+cheama check_if_equal
+sterge EFLAGS de pe stiva
+restituie stiva
+return
+
+cum as numi fuctia
+int test_serial_key(char *serial)
+
+high level
+
+verifica daca stringul primit ca parametru este
+"df7d09655894333fe"
+apoi face suma tuturor caracterelor din sir si verifica daca aceasta suma este
+1143
+daca totul da adevarat intoarce 1 (in eax)
+altfel intoarce 0 (in eax)

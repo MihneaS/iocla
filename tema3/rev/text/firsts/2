@@ -1,0 +1,25 @@
+ 8048548:	55                   	push   ebp
+ 8048549:	89 e5                	mov    ebp,esp
+ 804854b:	83 ec 14             	sub    esp,0x14
+ 804854e:	68 fc a3 04 08       	push   0x804a3fc
+ 8048553:	ff d0                	call   eax
+ 8048555:	83 c4 10             	add    esp,0x10
+ 8048558:	c9                   	leave  
+ 8048559:	f3 c3                	repz ret 
+
+
+
+
+ 804855b:	90                   	nop
+ 804855c:	8d 74 26 00          	lea    esi,[esi+eiz*1+0x0]
+ 8048560:	b8 fc a3 04 08       	mov    eax,0x804a3fc
+ 8048565:	2d fc a3 04 08       	sub    eax,0x804a3fc
+ 804856a:	c1 f8 02             	sar    eax,0x2
+ 804856d:	89 c2                	mov    edx,eax
+ 804856f:	c1 ea 1f             	shr    edx,0x1f
+ 8048572:	01 d0                	add    eax,edx
+ 8048574:	d1 f8                	sar    eax,1
+ 8048576:	74 1b                	je     8048593 <__isoc99_scanf@plt+0xb3>
+ 8048578:	ba 00 00 00 00       	mov    edx,0x0
+ 804857d:	85 d2                	test   edx,edx
+ 804857f:	74 12                	je     8048593 <__isoc99_scanf@plt+0xb3>

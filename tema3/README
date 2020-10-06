@@ -1,0 +1,40 @@
+SERBAN MIHNEA
+321CA
+tema 3 IOCLA
+
+
+OBS: cand scriu "se pusheaza un string pe stiva" sau "se muta un string in eax" sau "se muta stdin in eax" etc, ma refer la adresa de inceput a stringului/stdin
+
+am folosit binaryninja gdb si objdump pt analiza statica si dinamica
+
+toate functiile analizate se afla in rev/text
+numele fisierului reprezinta 1 numar sau 2 numere ce reprezinta locul in fisierul tema3 si numele functiei asa cum as fi denumit-o eu
+
+vulnerabilitati de bufferoverfow prezinta enter your adress si enter key to unlock vault
+vulnerabilitate de introducere de shellcode prezinta send magic string (impreuna cu functia pe care o apeleaza in linia call eax)
+
+ca sa "castig" am folosit vlnerabilitatea de bufferOverflow din Enter key to unlock vault ca sa apelez cele 3 functii pe care eu le-am denumit
+reset_global_int1 reset_global_int2 reset_global_int3 si apoi sa apelez functia din Send magic string ca sa inserez un string cu un shellcode care mi-ar fi permis sa schimb 0x804a2a0 in valoare
+necesara ca sa treaca testul din functia win*() (stringul introdus foloseste vulnerabilitatea de bufferoverflow pentru a apela shellcode-ul).
+
+un generator de payload se afla  in gen_payload.py. momentan nu apeleaza shellcode-ul dar daca l-ar apela ar afisa win
+
+OBS: fiecare fisier in care descriu o functie are o parte denumita low-level in care descriu prea in amanunt ce face functia, o parte high-level in care spun foarte pe curt ce face functia
+si o parte cum as numi-o in care spun cum as denumi functia
+
+in analiza unor functii care apelau functii ale sistemului linux, am folosit si manualul de linux pt documentare si niste teste din folder-ul /le_test (teste pt a afla valorile unor constante)
+
+pt a genera shellcode-ul am folosit https://defuse.ca/online-x86-assembler.htm#disassembly
+cu urmatorul cod assembly
+mov    eax,ds:0x804a428
+mov    DWORD PTR [ebp-0x4], eax
+mov ds:0x804a2a0, eax
+mov    eax,DWORD PTR [ebp-0x4]
+shl    eax,0x10
+xor    eax,DWORD PTR [ebp-0x4]
+imul   eax,eax,0x45d9f3a
+mov    ds:0x804a2a0, eax
+call   0x804882b
+nop
+nop
+

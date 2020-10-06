@@ -1,0 +1,35 @@
+ 80486ea:	55                   	push   ebp
+ 80486eb:	89 e5                	mov    ebp,esp
+ 80486ed:	83 ec 14             	sub    esp,0x14
+ 80486f0:	68 58 8d 04 08       	push   0x8048d58
+ 80486f5:	e8 86 fd ff ff       	call   8048480 <printf@plt>
+ 80486fa:	83 c4 04             	add    esp,0x4
+ 80486fd:	8d 45 ec             	lea    eax,[ebp-0x14]
+ 8048700:	50                   	push   eax
+ 8048701:	68 71 8d 04 08       	push   0x8048d71
+ 8048706:	e8 d5 fd ff ff       	call   80484e0 <__isoc99_scanf@plt>
+ 804870b:	83 c4 08             	add    esp,0x8
+ 804870e:	c9                   	leave  
+ 804870f:	c3                   	ret    
+
+low-level:
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se rezerva 20 de octeti pe stiva (sa numim aceasta variabila char name[20])
+se pusheaza "Enter desired username: "
+se cheama printf("Enter desired username: ")
+se elibereaza stiva
+se pune name in eax
+se pusheaza name
+se pusheaza "%20s"
+se cheama scanf("%20s", name)
+se elibereaza stiva de parametrii
+restituie stiva, return
+
+high level
+aceasta functie NU SCHIMBA USERNAME-ul, doar il citeste de la tastatura
+obs, username-ul e intors prin eax, si cat timp nu se modifica stiva, el e intact
+dar posibil sa nu existe zone de acces catre acea zona, dar daca cresti stiva destul, o sa ajungi sa ai din nou drepturi si daca o faci la timp numele ar fi intact
+
+cum as numi-o
+char* change_username()

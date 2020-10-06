@@ -1,0 +1,132 @@
+  
+ 80489a9:	55                   	push   ebp
+ 80489aa:	89 e5                	mov    ebp,esp
+ 80489ac:	a1 00 a4 04 08       	mov    eax,ds:0x804a400
+ 80489b1:	6a 00                	push   0x0
+ 80489b3:	50                   	push   eax
+ 80489b4:	e8 87 fa ff ff       	call   8048440 <setbuf@plt>
+ 80489b9:	83 c4 08             	add    esp,0x8
+ 80489bc:	a1 20 a4 04 08       	mov    eax,ds:0x804a420
+ 80489c1:	6a 00                	push   0x0
+ 80489c3:	50                   	push   eax
+ 80489c4:	e8 77 fa ff ff       	call   8048440 <setbuf@plt>
+ 80489c9:	83 c4 08             	add    esp,0x8
+ 80489cc:	6a 00                	push   0x0
+ 80489ce:	6a ff                	push   0xffffffff
+ 80489d0:	6a 22                	push   0x22
+ 80489d2:	6a 03                	push   0x3
+ 80489d4:	68 00 04 00 00       	push   0x400
+ 80489d9:	6a 00                	push   0x0
+ 80489db:	e8 e0 fa ff ff       	call   80484c0 <mmap@plt>
+ 80489e0:	83 c4 18             	add    esp,0x18
+ 80489e3:	a3 28 a4 04 08       	mov    ds:0x804a428,eax
+ 80489e8:	6a 69                	push   0x69
+ 80489ea:	68 c0 a2 04 08       	push   0x804a2c0
+ 80489ef:	e8 41 fc ff ff       	call   8048635 <__isoc99_scanf@plt+0x155>
+ 80489f4:	83 c4 08             	add    esp,0x8
+ 80489f7:	68 b9 00 00 00       	push   0xb9
+ 80489fc:	68 40 a3 04 08       	push   0x804a340
+ 8048a01:	e8 2f fc ff ff       	call   8048635 <__isoc99_scanf@plt+0x155>
+ 8048a06:	83 c4 08             	add    esp,0x8
+ 8048a09:	e8 63 fe ff ff       	call   8048871 <__isoc99_scanf@plt+0x391>
+ 8048a0e:	e8 70 fe ff ff       	call   8048883 <__isoc99_scanf@plt+0x3a3>
+ 8048a13:	e8 22 ff ff ff       	call   804893a <__isoc99_scanf@plt+0x45a>
+ 8048a18:	eb f4                	jmp    8048a0e <__isoc99_scanf@plt+0x52e>
+ 8048a1a:	66 90                	xchg   ax,ax
+ 8048a1c:	66 90                	xchg   ax,ax
+ 8048a1e:	66 90                	xchg   ax,ax
+
+
+low-level
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se muta stdin in eax
+se pusheaza 0 si eax
+se cheama setbuf(stdin, null)
+se curata stiva de argumente
+/* http://man7.org/linux/man-pages/man3/setbuf.3.html
+#include <stdio.h>
+void setbuf(FILE *stream, char *buf);
+If the argument buf is NULL, only the mode is
+affected; a new buffer will be allocated on the next read or write
+operation.
+*/
+analog pt stdout
+
+pusheaza 0, -1, 34, 3, 1024, 0
+se apeleaza mmap(null, 1024, 3, 34, -1, 0)
+se curata stiva de argumente
+/*
+#include <sys/mman.h>
+void *mmap(void *addr, size_t length, int prot, int flags,
+		int fd, off_t offset);
+If addr is NULL, then the kernel chooses the address at which to
+create the mapping.
+
+conform test.c
+PROT_EXEC=4
+PROT_READ=1
+PROT_WRITE=2
+PROT_NONE=0
+
+deci 3 inseamna citire si scriere
+
+
+conform test.c
+MAP_PRIVATE=2
+MAP_ANON=32
+
+//34 == 32 | 2
+
+conform manualului de linux
+       MAP_ANON
+              Synonym for MAP_ANONYMOUS.  Deprecated.
+
+       MAP_ANONYMOUS
+The mapping is not backed by any file; its contents are
+              initialized to zero.  The fd argument is ignored; however,
+              some implementations require fd to be -1 if MAP_ANONYMOUS (or
+              MAP_ANON) is specified, and portable applications should
+              ensure this.  The offset argument should be zero.
+
+       MAP_PRIVATE
+              Create a private copy-on-write mapping.  Updates to the
+              mapping are not visible to other processes mapping the same
+              file, and are not carried through to the underlying file.  It
+              is unspecified whether changes made to the file after the
+              mmap() call are visible in the mapped region.
+
+practic acest apel aloca 1024 de octeti
+
+*/
+
+salveaza la o adresa a unei variabile gloale, 0x804a428, adresa returnata de
+mmap(pe care o voi numi heap_address)
+pusheaza 105 si o adresa glbala pe care o s-o numesc globa_str1
+cheama xor_with_170(global_str1, 105);
+/* asta transforma global_str1 in:
+=========================
+|| Welcome to the vault ||
+|| Unlock it if you can ||
+=========================
+*/
+analog pt global_str2
+/* acesta devine
+0. Solve the puzzle.
+1. Enter your name.
+2. Enter your address.
+3. Enter key to unlock vault. (Broken keycheck)
+4. Send magic string (vault must be unlocked)
+5. Leave.
+*/
+
+apeleaza print_wellcome
+loop_infinit:
+	apeleaza print_menu
+	apeleaza menu
+	jmp loop_infinit
+
+
+cum as numi functia
+int main()
+

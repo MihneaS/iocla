@@ -1,0 +1,33 @@
+ 8048a52:	5e                   	pop    esi
+ 8048a53:	9d                   	popf   
+ 8048a54:	75 03                	jne    8048a59 <__isoc99_scanf@plt+0x579>
+ 8048a56:	9c                   	pushf  
+ 8048a57:	56                   	push   esi
+ 8048a58:	c3                   	ret
+ 8048a59:	31 c0                	xor    eax,eax
+ 8048a5b:	eb f9                	jmp    8048a56 <__isoc99_scanf@plt+0x576>
+
+
+low-level:
+pop adresa de return in esi
+pop EFLAGS
+
+verifica daca rezultatul n-a fost 0
+
+daca n-a fost face eax 0
+in continuare (si daca rezultatul a fost 0)
+pusheaza EFLAGS
+pusheaza esi (adresa de return)
+return
+
+high-level
+
+daca rezultatul compararii (trimis ca parametru) n-aa fost 0 intoarce 0 altfel intoarce eax
+
+cum as numi-o
+
+int check_if_equal(int EFLAGS)
+
+
+
+

@@ -1,0 +1,18 @@
+ 8048895:	55                   	push   ebp
+ 8048896:	89 e5                	mov    ebp,esp
+ 8048898:	c7 05 94 a2 04 08 00 	mov    DWORD PTR ds:0x804a294,0x0
+ 804889f:	00 00 00 
+ 80488a2:	8b 0d 28 a4 04 08    	mov    ecx,DWORD PTR ds:0x804a428;heapAddress
+ 80488a8:	a1 a4 a2 04 08       	mov    eax,ds:0x804a2a4
+ 80488ad:	8b 15 a8 a2 04 08    	mov    edx,DWORD PTR ds:0x804a2a8
+ 80488b3:	89 01                	mov    DWORD PTR [ecx],eax
+ 80488b5:	89 51 04             	mov    DWORD PTR [ecx+0x4],edx
+ 80488b8:	5d                   	pop    ebp
+ 80488b9:	c3                   	ret    
+
+
+face global_int1 0
+pregateste primii 2 octeti din heap_address
+
+cum as numi-o
+ void reset_global_int1()

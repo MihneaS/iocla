@@ -1,0 +1,64 @@
+ 8048635:	55                   	push   ebp
+ 8048636:	89 e5                	mov    ebp,esp
+ 8048638:	83 ec 08             	sub    esp,0x8
+ 804863b:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 8048642:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 8048649:	eb 24                	jmp    804866f <__isoc99_scanf@plt+0x18f>
+ 804864b:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 804864e:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048651:	01 d0                	add    eax,edx
+ 8048653:	0f b6 00             	movzx  eax,BYTE PTR [eax]
+ 8048656:	88 45 fb             	mov    BYTE PTR [ebp-0x5],al
+ 8048659:	80 75 fb aa          	xor    BYTE PTR [ebp-0x5],0xaa
+ 804865d:	8b 55 08             	mov    edx,DWORD PTR [ebp+0x8]
+ 8048660:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048663:	01 c2                	add    edx,eax
+ 8048665:	0f b6 45 fb          	movzx  eax,BYTE PTR [ebp-0x5]
+ 8048669:	88 02                	mov    BYTE PTR [edx],al
+ 804866b:	83 45 fc 01          	add    DWORD PTR [ebp-0x4],0x1
+ 804866f:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 8048672:	3b 45 0c             	cmp    eax,DWORD PTR [ebp+0xc]
+ 8048675:	72 d4                	jb     804864b <__isoc99_scanf@plt+0x16b>
+ 8048677:	c9                   	leave  
+ 8048678:	c3                   	ret  
+
+low-level:
+
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se aloca 8 octeti pe stiva
+se initializeaza s1 cu 0
+se initializeaza s1 cu 0
+while1:
+se sare la x
+se muta in eax s1
+se verifica daca eax e mai mic ca arg2
+daca nu este se restaureaza stiva si se returneaza
+daca este
+se muta in edx arg1
+se muta in eax s1
+se adauga edx peste eax
+se muta octetul indicat de eax in eax
+se muta in s2 al
+s2 se xoreaza cu 170
+se muta in edx arg1
+se muta in eax s1
+se aduna eax peste edx
+se muta s2 in eax
+se muta al octetul indicat de edx
+
+
+high level
+void xor_with_170(char* string, int n){
+	int count = 0;
+	char c;
+	...
+}
+
+xoreaza cu 170 in-place n caractere de la adresa string
+
+
+
+
+
+

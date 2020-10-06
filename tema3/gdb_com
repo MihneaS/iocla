@@ -1,0 +1,17 @@
+b *0x8048806
+
+def sh
+x/14i $pc
+info frame
+end
+
+def pas
+nexti
+sh
+end
+
+def pass
+stepi
+sh
+end
+

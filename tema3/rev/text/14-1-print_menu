@@ -1,0 +1,27 @@
+ 8048883:	55                   	push   ebp
+ 8048884:	89 e5                	mov    ebp,esp
+ 8048886:	68 40 a3 04 08       	push   0x804a340
+ 804888b:	e8 00 fc ff ff       	call   8048490 <puts@plt>
+ 8048890:	83 c4 04             	add    esp,0x4
+ 8048893:	c9                   	leave  
+ 8048894:	c3                   	ret 
+
+low-level:
+
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+pusheaza pe stiva un string global (o sa il numesc menu_str)
+il afiseaza cu puts
+sterge de pe stiva menu_str
+restituie stiva
+intoarce
+
+high-level
+
+afiseaza un anumit meniul
+
+cumas numi-o
+
+void print_menu()
+
+posibila vulnerabilitate: leak de informatii dupa str global, daca putem controla menu_str sa nu aibe caracter terminator si daca se mai afla ceva folositor adiacent sectiunii .data

@@ -1,0 +1,26 @@
+ 80485a0:	80 3d 24 a4 04 08 00 	cmp    BYTE PTR ds:0x804a424,0x0
+ 80485a7:	75 13                	jne    80485bc <__isoc99_scanf@plt+0xdc>
+ 80485a9:	55                   	push   ebp
+ 80485aa:	89 e5                	mov    ebp,esp
+ 80485ac:	83 ec 08             	sub    esp,0x8
+ 80485af:	e8 7c ff ff ff       	call   8048530 <__isoc99_scanf@plt+0x50>
+ 80485b4:	c6 05 24 a4 04 08 01 	mov    BYTE PTR ds:0x804a424,0x1
+ 80485bb:	c9                   	leave  
+ 80485bc:	f3 c3                	repz ret 
+ 80485be:	66 90                	xchg   ax,ax
+
+
+low-level:
+compara cu 0 o variabila globala (sa ii spunem char function_was_called) care e initializata cu 0
+daca nu e 0 return
+altfel
+salvează vechiului ebp pe stivă
+se actualizează valoarea la vârful curent al stivei.
+se rezerva 8 octeti pe stiva
+se cheama ???
+se muta in in function_was_called
+se restaureaza stiva
+return.
+
+as numi functia
+void call_one_time();

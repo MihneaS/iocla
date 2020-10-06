@@ -1,0 +1,42 @@
+ 804882b:	55                   	push   ebp
+ 804882c:	89 e5                	mov    ebp,esp
+ 804882e:	83 ec 04             	sub    esp,0x4
+ 8048831:	a1 28 a4 04 08       	mov    eax,ds:0x804a428 heap_address
+ 8048836:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+ 8048839:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 804883c:	c1 e0 10             	shl    eax,0x10
+ 804883f:	33 45 fc             	xor    eax,DWORD PTR [ebp-0x4]
+ 8048842:	69 c0 3a 9f 5d 04    	imul   eax,eax,0x45d9f3a
+ 8048848:	89 c2                	mov    edx,eax
+ 804884a:	a1 a0 a2 04 08       	mov    eax,ds:0x804a2a0
+ 804884f:	39 c2                	cmp    ed	x,eax
+ 8048851:	75 0f                	jne    8048862 <__isoc99_scanf@plt+0x382>
+ 8048853:	68 a5 8d 04 08       	push   0x8048da5 ; win!
+ 8048858:	e8 33 fc ff ff       	call   8048490 <puts@plt>
+ 804885d:	83 c4 04             	add    esp,0x4
+ 8048860:	eb 0d                	jmp    804886f <__isoc99_scanf@plt+0x38f>
+ 8048862:	68 aa 8d 04 08       	push   0x8048daa ; try harder
+ 8048867:	e8 24 fc ff ff       	call   8048490 <puts@plt>
+ 804886c:	83 c4 04             	add    esp,0x4
+ 804886f:	c9                   	leave  
+ 8048870:	c3                   	ret    
+
+functia care trebuie apelata in final
+
+as numi-o
+void win() {
+	int *ptr;
+	eax= heap_address
+	ptr = eax
+	eax = ptr
+	eax << 16
+	eax = eax*ptr // tratate ca int
+	edx = eax
+	eax = 0x804a2a0
+	if (edx == eax)
+		win
+	else
+		try again
+}
+	
+}
